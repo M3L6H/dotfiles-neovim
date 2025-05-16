@@ -95,6 +95,7 @@ local M = {
   opts = {
     bigfile = { enabled = true },
     dashboard = {
+      enabled = utils.lazyAdd(true, nixCats("dashboard")),
       sections = {
         {
           section = "terminal",
@@ -165,7 +166,7 @@ local M = {
       level = vim.log.levels.INFO,
     },
     picker = {
-      enabled = true,
+      enabled = utils.lazyAdd(true, nixCats("picker")),
       matcher = {
         frecency = true,
       },

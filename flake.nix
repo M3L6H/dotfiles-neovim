@@ -45,11 +45,22 @@
         }:
         {
           lspsAndRuntimeDeps = {
+            dashboard = with pkgs; [
+              chafa
+              gh
+              imagemagick
+            ];
             lua = with pkgs; [
               lua-language-server
+              stylua
+            ];
+            nix = with pkgs; [
               nixd
               nixfmt-rfc-style
-              stylua
+            ];
+            picker = with pkgs; [
+              fzf
+              ripgrep
             ];
           };
 
@@ -120,8 +131,11 @@
             };
             categories = {
               general = true;
+
+              dashboard = true;
               lua = true;
               nix = true;
+              picker = true;
             };
             extra = {
               nixdExtras.nixpkgs = ''import (builtins.getFlake "path:${builtins.toString inputs.self}").inputs.nixpkgs {}'';

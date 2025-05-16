@@ -26,15 +26,38 @@ Dependencies that are used by the various plugins in the configuration. On Nix, 
 in the flake and will be installed automatically. On non-Nix systems, these will have to be
 installed manually.
 
-| Dependency   | Purpose                             |
-| ------------ | ----------------------------------- |
-| chafa        | Used for image in dashboard         |
-| image-magick | Used for image in dashboard         |
-| fzf          | Used in picker                      |
-| ripgrep      | Used in picker                      |
-| gh           | Used for GitHub issues in dashboard |
+Each dependency below has been prefixed by the nixCats category it is associated with.
 
-## Credits
+| Dependency              | Purpose                             |
+| ----------------------- | ----------------------------------- |
+| dashboard:chafa         | Used for image in dashboard         |
+| dashboard:gh            | Used for GitHub issues in dashboard |
+| dashboard:image-magick  | Used for image in dashboard         |
+| lua:lua-language-server | Used for lua language support       |
+| lua:stylua              | Used for lua formatting             |
+| nix:nixd                | Used for nix language support       |
+| nix:nixfmt-rfc-style    | Used for nix formatting             |
+| picker:fzf              | Used in picker                      |
+| picker:ripgrep          | Used in picker                      |
+
+## Language servers
+
+Language server configuration is centralized at
+[lspconfig.lua](lua/plugins/lspconfig.lua)
+under the lsps table. To add more lsps, a new entry should be added to the lsps table, and the
+required dependencies should be added to the corresponding category in
+[flake.nix](flake.nix)
+.
+
+## Development
+
+Make any changes to the appropriate files, then run
+
+```sh
+nix build .
+```
+
+# Credits
 
 In no particular order.
 

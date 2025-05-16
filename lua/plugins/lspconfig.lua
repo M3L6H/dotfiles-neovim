@@ -1,7 +1,7 @@
 local utils = require("nixCatsUtils")
 
 local lsps = {
-  lua_ls = {
+  lua_ls = utils.lazyAdd(true, nixCats("lua")) and {
     pattern = { "*.lua" },
     settings = {
       Lua = {
@@ -19,7 +19,7 @@ local lsps = {
     },
   },
   -- We shouldn't need nixd if we are running outside of nixCats!
-  nixd = utils.lazyAdd(false, {
+  nixd = utils.lazyAdd(false, nixCats("nix") and {
     pattern = { "*.nix" },
     settings = {
       nixd = {
