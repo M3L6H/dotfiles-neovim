@@ -38,10 +38,10 @@ local M = {
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = "<Tab>",
-        node_incremental = "<Tab>",
+        init_selection = "+",
+        node_incremental = "+",
         scope_incremental = false,
-        node_decremental = "<S-Tab>",
+        node_decremental = "_",
       },
     },
   },
