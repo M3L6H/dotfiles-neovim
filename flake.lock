@@ -31,27 +31,10 @@
         "type": "github"
       }
     },
-    "plugins-demicolon": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1745583647,
-        "narHash": "sha256-UTzA9xX14zS6FV4g4HNWjyYyFPGE/Rc9dADa2+JFltU=",
-        "owner": "mawkler",
-        "repo": "demicolon.nvim",
-        "rev": "8d79e527dbbef9de06405a30258b8d752c0638c4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mawkler",
-        "repo": "demicolon.nvim",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "nixCats": "nixCats",
-        "nixpkgs": "nixpkgs",
-        "plugins-demicolon": "plugins-demicolon"
+        "nixpkgs": "nixpkgs"
       }
     }
   },

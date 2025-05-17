@@ -6,7 +6,7 @@ with
 [lazy](https://lazy.folke.io)
 so that it is portable between Nix and non-Nix environments.
 
-![Two-column neovim dashboard made with folke Snacks.](pictures/dashboard.png)
+![Two-column neovim dashboard made with folke Snacks.](images/dashboard.jpg)
 
 ## Options
 

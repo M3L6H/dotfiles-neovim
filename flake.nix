@@ -4,11 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
-
-    "plugins-demicolon" = {
-      url = "github:mawkler/demicolon.nvim";
-      flake = false;
-    };
   };
 
   outputs =
@@ -22,20 +17,21 @@
       luaPath = "${./.}";
       forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
 
-      extra_pkg_config = { };
-
       dependencyOverlays = [
         (utils.standardPluginOverlay inputs)
       ];
 
-      customOpts = {
+      extra_pkg_config = { };
+
+      # Define extra opts
+      extra_pkg_params = {
         aliases = {
           enable = false;
         };
         colorscheme = "kanagawa";
         hostname = "nixos";
         username = "m3l6h";
-        homeDirectory = "/home/${customOpts.username}";
+        homeDirectory = "/home/${extra_pkg_params.username}";
       };
 
       categoryDefinitions =
@@ -43,6 +39,26 @@
           pkgs,
           ...
         }:
+        let
+          # TODO Figure out how to do this idiomatically
+          demicolon =
+            (pkgs.vimUtils.buildVimPlugin {
+              pname = "demicolon.nvim";
+              version = "2025-04-25";
+              src = pkgs.fetchFromGitHub {
+                owner = "mawkler";
+                repo = "demicolon.nvim";
+                rev = "8d79e527dbbef9de06405a30258b8d752c0638c4";
+                hash = "sha256-UTzA9xX14zS6FV4g4HNWjyYyFPGE/Rc9dADa2+JFltU=";
+              };
+              meta.homepage = "https://github.com/mawkler/demicolon.nvim/";
+            }).overrideAttrs
+              {
+                nvimSkipModules = [
+                  "demicolon.repeat_jump"
+                ];
+              };
+        in
         {
           lspsAndRuntimeDeps = {
             dashboard = with pkgs; [
@@ -71,6 +87,7 @@
                 lazy-nvim
                 blink-cmp
                 conform-nvim
+                demicolon
                 fastaction-nvim
                 flash-nvim
                 guess-indent-nvim
@@ -96,10 +113,7 @@
                 which-key-nvim
               ]
               ++ [
-                pkgs.vimPlugins."${customOpts.colorscheme}-nvim"
-              ]
-              ++ [
-                pkgs.neovimPlugins.demicolon
+                pkgs.vimPlugins."${extra_pkg_params.colorscheme}-nvim"
               ];
           };
 
@@ -112,7 +126,7 @@
           { pkgs, ... }:
           {
             settings = {
-              colorscheme = customOpts.colorscheme;
+              colorscheme = extra_pkg_params.colorscheme;
               suffix-path = true;
               suffix-LD = true;
               wrapRc = true;
@@ -120,14 +134,14 @@
                 [
                   "nvim"
                 ]
-                ++ nixpkgs.lib.optionals (customOpts.aliases.enable) [
+                ++ nixpkgs.lib.optionals (extra_pkg_params.aliases.enable) [
                   "v"
                   "vi"
                   "vim"
                 ];
               hosts.python3.enable = true;
               hosts.node.enable = true;
-              unwrappedCfgPath = "${customOpts.homeDirectory}/.local/state/nvim/lazy";
+              unwrappedCfgPath = "${extra_pkg_params.homeDirectory}/.local/state/nvim/lazy";
             };
             categories = {
               general = true;
@@ -139,8 +153,8 @@
             };
             extra = {
               nixdExtras.nixpkgs = ''import (builtins.getFlake "path:${builtins.toString inputs.self}").inputs.nixpkgs {}'';
-              nixdExtras.nixos_options = ''(builtins.getFlake "path:${builtins.toString inputs.self}").nixosConfigurations.${customOpts.hostname}.options'';
-              nixdExtras.home_manager_options = ''(builtins.getFlake "path:${builtins.toString inputs.self}").homeConfigurations.${customOpts.username}.options'';
+              nixdExtras.nixos_options = ''(builtins.getFlake "path:${builtins.toString inputs.self}").nixosConfigurations.${extra_pkg_params.hostname}.options'';
+              nixdExtras.home_manager_options = ''(builtins.getFlake "path:${builtins.toString inputs.self}").homeConfigurations.${extra_pkg_params.username}.options'';
 
               nixdExtras.nvim_lspconfig = "${pkgs.vimPlugins.nvim-lspconfig}";
               nixdExtras.sqlite3_path = "${pkgs.sqlite.out}/lib/libsqlite3.so";
@@ -159,7 +173,7 @@
             system
             dependencyOverlays
             extra_pkg_config
-            customOpts
+            extra_pkg_params
             ;
         } categoryDefinitions packageDefinitions;
         defaultPackage = nixCatsBuilder defaultPackageName;
@@ -190,8 +204,8 @@
             categoryDefinitions
             packageDefinitions
             extra_pkg_config
+            extra_pkg_params
             nixpkgs
-            customOpts
             ;
         };
         # and the same for home manager
@@ -204,8 +218,8 @@
             categoryDefinitions
             packageDefinitions
             extra_pkg_config
+            extra_pkg_params
             nixpkgs
-            customOpts
             ;
         };
       in
@@ -220,7 +234,7 @@
             nixpkgs
             dependencyOverlays
             extra_pkg_config
-            customOpts
+            extra_pkg_params
             ;
         } categoryDefinitions packageDefinitions defaultPackageName;
 

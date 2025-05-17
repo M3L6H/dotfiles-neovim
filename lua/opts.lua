@@ -9,7 +9,8 @@ o.expandtab = true
 o.shiftwidth = 2
 o.softtabstop = 2
 o.tabstop = 2
-o.smartindent = true
+o.smartindent = false -- Causes issues with comments in nix
+o.cindent = true
 o.breakindent = true
 
 -- Enable mouse mode
@@ -66,4 +67,3 @@ vim.g.dashboard = {
   image = "/home/m3l6h/files/images/neovim/dashboard.jpg",
   size = "60x32",
 }
-
