@@ -122,7 +122,7 @@
         };
 
       packageDefinitions = {
-        neovim =
+        m3l6h-neovim =
           { pkgs, ... }:
           {
             settings = {
@@ -161,7 +161,7 @@
             };
           };
       };
-      defaultPackageName = "neovim";
+      defaultPackageName = "m3l6h-neovim";
     in
 
     forEachSystem (
