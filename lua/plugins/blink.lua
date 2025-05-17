@@ -28,11 +28,11 @@ local M = {
       },
       ["<Tab>"] = {
         function(cmp)
+          vim.g.cmp_selected = false
+
           if cmp.snippet_active() then
-            vim.g.cmp_selected = false
             return cmp.accept()
           else
-            vim.g.cmp_selected = false
             return cmp.select_and_accept()
           end
         end,
