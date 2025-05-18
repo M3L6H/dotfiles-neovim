@@ -8,6 +8,14 @@ local M = {
     { "Sr", desc = "Surround replace" },
   },
   opts = {
+    custom_surroundings = {
+      ["("] = { output = { left = "(", right = ")" } },
+      [")"] = { output = { left = "( ", right = " )" } },
+      ["["] = { output = { left = "[", right = "]" } },
+      ["]"] = { output = { left = "[ ", right = " ]" } },
+      ["{"] = { output = { left = "{", right = "}" } },
+      ["}"] = { output = { left = "{ ", right = " }" } },
+    },
     mappings = {
       add = "Sa", -- Add surrounding in Normal and Visual modes
       delete = "Sd", -- Delete surrounding
