@@ -17,7 +17,6 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         uses: DeterminateSystems/update-flake-lock@main
         with:
-          sign-commits: true
           pr-reviewers: m3l6h
       - name: Print PR number
         if: ${{ github.event_name != 'pull_request' }}
