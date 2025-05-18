@@ -62,22 +62,32 @@ local M = {
   keys = {
     { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart find files" },
     -- Find
-    { "<leader>fc", function() Snacks.picker.commands() end, desc = "Find commands" },
-    { "<leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
-    { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Find diagnostics" },
-    { "<leader>fh", function() Snacks.picker.help() end, desc = "Find help" },
-    { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Find keymaps" },
-    { "<leader>fm", function() Snacks.picker.marks() end, desc = "Find marks" },
-    { "<leader>fn", function() Snacks.picker.notifications() end, desc = "Find notifications" },
-    { "<leader>fs", function() Snacks.picker.grep() end, desc = "Grep files" },
+    { "<leader>fc", function() Snacks.picker.commands() end, desc = "[F]ind [c]ommands" },
+    { "<leader>ff", function() Snacks.picker.files() end, desc = "[F]ind [f]iles" },
+    { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "[F]ind [d]iagnostics" },
+    { "<leader>fh", function() Snacks.picker.help() end, desc = "[F]ind [h]elp" },
+    { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "[F]ind [k]eymaps" },
+    { "<leader>fm", function() Snacks.picker.marks() end, desc = "[F]ind [m]arks" },
+    { "<leader>fn", function() Snacks.picker.notifications() end, desc = "[F]ind [n]otifications" },
+    { "<leader>fr", function() Snacks.picker.resume() end, desc = "[F]ind [r]esume" },
+    { "<leader>fs", function() Snacks.picker.grep() end, desc = "[F]ind [s]earch (ripgrep)" },
     -- Code
-    { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename file" },
+    { "<leader>rf", function() Snacks.rename.rename_file() end, desc = "[R]ename [f]ile" },
     -- Goto
-    { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto definition" },
-    { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto declaration" },
-    { "gu", function() Snacks.picker.lsp_references() end, nowait = true, desc = "Goto usages" },
-    { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto implementation" },
-    { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto t[y]pe definition" },
+    { "gd", function() Snacks.picker.lsp_definitions() end, desc = "[G]oto [d]efinition" },
+    { "gD", function() Snacks.picker.lsp_declarations() end, desc = "[G]oto [D]eclaration" },
+    {
+      "gu",
+      function() Snacks.picker.lsp_references() end,
+      nowait = true,
+      desc = "[G]oto [u]sages",
+    },
+    { "gI", function() Snacks.picker.lsp_implementations() end, desc = "[G]oto [i]mplementation" },
+    {
+      "gy",
+      function() Snacks.picker.lsp_type_definitions() end,
+      desc = "[G]oto t[y]pe definition",
+    },
     -- Jump
     {
       "]]",
@@ -193,6 +203,45 @@ local M = {
     },
     words = { enabled = true },
   },
+  init = function()
+    -- Neovim news reminder
+    vim.api.nvim_create_autocmd("VimEnter", {
+      group = vim.api.nvim_create_augroup("NeovimNews", { clear = true }),
+      pattern = "*",
+      callback = function()
+        local vinfo = vim.fs.abspath("~/.local/state/nvim/version-info")
+
+        local function read_vinfo()
+          local file = io.open(vinfo, "r")
+          if not file then return nil end
+          local content = file:read("*a")
+          file:close()
+          return content
+        end
+
+        local currv = vim.version()
+        currv = currv.major .. "." .. currv.minor .. "." .. currv.patch
+
+        local function write_vinfo()
+          local file = io.open(vinfo, "w")
+          if not file then return nil end
+          file:write(currv)
+          file:close()
+        end
+
+        -- Check if neovim has been updated
+        if not vim.uv.fs_stat(vinfo) or read_vinfo() ~= currv then
+          Snacks.notify.info("Neovim has updated. Run <leader>N to view the news")
+          vim.keymap.set("n", "<leader>N", function()
+            vim.cmd("h news-features")
+            vim.keymap.del("n", "<leader>N")
+          end, { desc = "View the Neovim news" })
+          write_vinfo()
+        end
+      end,
+      desc = "Neovim News",
+    })
+  end,
 }
 
 return M
