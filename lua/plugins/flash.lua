@@ -20,6 +20,12 @@ local M = {
       function() require("flash").toggle() end,
       desc = "Toggle Flash Search",
     },
+    {
+      "yr",
+      mode = { "n" },
+      function() require("flash").remote() end,
+      desc = "Remote Flash",
+    },
   },
   ---@type Flash.Config
   ---@diagnostic disable-next-line missing-fields
