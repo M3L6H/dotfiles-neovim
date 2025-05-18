@@ -83,12 +83,12 @@ local M = {
         pattern = "*",
         callback = function(event)
           local km = vim.keymap
-          km.set("n", "<leader>cr", function() vim.lsp.rename() end, { desc = "[C]ode [R]ename" })
+          km.set("n", "<leader>rn", function() vim.lsp.rename() end, { desc = "[R]e[n]ame" })
           km.set(
             "n",
             "<leader>dd",
             function() vim.diagnostic.open_float() end,
-            { desc = "[D]iagnostics [D]isplay" }
+            { desc = "[D]iagnostics [d]isplay" }
           )
 
           -- Get client
