@@ -1,5 +1,8 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 local M = {
   "nvim-treesitter/nvim-treesitter-textobjects",
+  enabled = lazyAdd(vim.g.plugins.treesitter, nixCats("treesitter")),
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
   },

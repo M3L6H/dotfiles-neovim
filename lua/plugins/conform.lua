@@ -1,5 +1,8 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 local M = {
   "stevearc/conform.nvim",
+  enabled = lazyAdd(vim.g.plugins.conform, nixCats("conform")),
   event = "BufWritePre",
   cmd = "ConformInfo",
   keys = {

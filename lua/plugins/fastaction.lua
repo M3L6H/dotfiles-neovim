@@ -1,5 +1,8 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 local M = {
   "Chaitanyabsprip/fastaction.nvim",
+  enabled = lazyAdd(vim.g.plugins.fastaction, nixCats("fastaction")),
   keys = {
     {
       "<leader>a",

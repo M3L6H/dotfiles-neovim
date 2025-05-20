@@ -1,7 +1,23 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
+local default_sources = { "lsp", "path", "snippets", "buffer" }
+
+local providers = {}
+
+if lazyAdd(vim.g.plugins.lazydev, nixCats("lazydev")) then
+  table.insert(default_sources, 1, "lazydev")
+  providers["lazydev"] = {
+    name = "LazyDev",
+    module = "lazydev.integrations.blink",
+    score_offset = 100,
+  }
+end
+
 local M = {
   "saghen/blink.cmp",
-  dependencies = { { "echasnovski/mini.icons", opts = {} } },
-  event = "BufEnter",
+  enabled = lazyAdd(vim.g.plugins["blink-cmp"], nixCats("blink-cmp")),
+  dependencies = { "echasnovski/mini.icons" },
+  event = { "CmdlineEnter", "InsertEnter" },
   opts = {
     keymap = {
       preset = "none",
@@ -163,14 +179,8 @@ local M = {
     fuzzy = { implementation = "prefer_rust_with_warning" },
     signature = { enabled = true },
     sources = {
-      default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-      providers = {
-        lazydev = {
-          name = "LazyDev",
-          module = "lazydev.integrations.blink",
-          score_offset = 100,
-        },
-      },
+      default = default_sources,
+      providers = providers,
     },
     cmdline = {
       keymap = { preset = "inherit" },

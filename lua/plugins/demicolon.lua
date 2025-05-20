@@ -1,6 +1,8 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 local M = {
   "mawkler/demicolon.nvim",
-  enabled = true,
+  enabled = lazyAdd(vim.g.plugins.demicolon, nixCats("demicolon")),
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "nvim-treesitter/nvim-treesitter-textobjects",
