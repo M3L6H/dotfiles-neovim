@@ -1,12 +1,13 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 local M = {
   "echasnovski/mini.diff",
+  enabled = lazyAdd(vim.g.plugins["mini-diff"], nixCats("mini-diff")),
   event = "VeryLazy",
   keys = {
     {
       "<leader>go",
-      function()
-        require("mini.diff").toggle_overlay(0)
-      end,
+      function() require("mini.diff").toggle_overlay(0) end,
       desc = "Toggle mini.diff overlay",
     },
   },
@@ -23,4 +24,3 @@ local M = {
 }
 
 return M
-

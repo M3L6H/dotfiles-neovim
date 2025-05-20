@@ -67,3 +67,29 @@ vim.g.dashboard = {
   image = "/home/m3l6h/files/images/neovim/dashboard.jpg",
   size = "60x32",
 }
+
+-- Plugin enablement opts
+vim.g.plugins = {}
+vim.g.plugins.autopairs = true
+vim.g.plugins["blink-cmp"] = true
+vim.g.plugins.conform = true
+vim.g.plugins.demicolon = true
+vim.g.plugins.fastaction = true
+vim.g.plugins.flash = true
+vim.g.plugins["guess-indent"] = true
+vim.g.plugins.lazydev = true
+vim.g.plugins.lspconfig = true
+vim.g.plugins["mini-diff"] = true
+vim.g.plugins["mini-statusline"] = true
+vim.g.plugins["mini-surround"] = false
+vim.g.plugins.noice = true
+vim.g.plugins.oil = true
+vim.g.plugins.smartcolumn = true
+vim.g.plugins["smear-cursor"] = true
+vim.g.plugins.snacks = true
+vim.g.plugins.surround = true
+vim.g.plugins.treesitter = true
+vim.g.plugins.trouble = true
+vim.g.plugins.undotree = true
+vim.g.plugins["vim-tmux-navigator"] = true
+vim.g.plugins["which-key"] = true

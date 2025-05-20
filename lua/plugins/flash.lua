@@ -1,6 +1,8 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 local M = {
   "folke/flash.nvim",
-  event = "VeryLazy",
+  enabled = lazyAdd(vim.g.plugins.flash, nixCats("flash")),
   keys = {
     {
       "<CR>",

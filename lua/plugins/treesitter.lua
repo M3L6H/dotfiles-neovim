@@ -1,16 +1,17 @@
-local utils = require("nixCatsUtils")
+local lazyAdd = require("nixCatsUtils").lazyAdd
 
 local M = {
   "nvim-treesitter/nvim-treesitter",
-  build = utils.lazyAdd(":TSUpdate"),
-  event = "BufReadPost",
+  enabled = lazyAdd(vim.g.plugins.treesitter, nixCats("treesitter")),
+  build = lazyAdd(":TSUpdate"),
+  event = "BufEnter",
   opts = {
     highlight = {
       enable = true,
       additional_vim_regex_highlighting = false,
     },
     autopairs = { enable = true },
-    ensure_installed = utils.lazyAdd({
+    ensure_installed = lazyAdd({
       "bash",
       "c",
       "cpp",
@@ -33,7 +34,7 @@ local M = {
       "yaml",
       "yuck",
     }, false),
-    auto_install = utils.lazyAdd(true, false),
+    auto_install = lazyAdd(true, false),
     sync_install = false,
     incremental_selection = {
       enable = true,

@@ -1,7 +1,9 @@
 local utils = require("nixCatsUtils")
+local lazyAdd = utils.lazyAdd
+local isNixCats = utils.isNixCats
 
 local lsps = {
-  lua_ls = utils.lazyAdd(true, nixCats("lua")) and {
+  lua_ls = lazyAdd(true, nixCats("lua")) and {
     pattern = { "*.lua" },
     settings = {
       Lua = {
@@ -19,7 +21,7 @@ local lsps = {
     },
   },
   -- We shouldn't need nixd if we are running outside of nixCats!
-  nixd = utils.lazyAdd(false, nixCats("nix") and {
+  nixd = lazyAdd(false, nixCats("nix") and {
     pattern = { "*.nix" },
     settings = {
       nixd = {
@@ -42,10 +44,10 @@ local lsps = {
 
 local M = {
   "neovim/nvim-lspconfig",
-  dependencies = { { "saghen/blink.cmp" } },
+  enabled = lazyAdd(vim.g.plugins.lspconfig, nixCats("lspconfig")),
   cmd = { "LspInfo", "LspLog", "LspStart", "LspStop", "LspRestart" },
   init = function()
-    local lspConfigPath = utils.lazyAdd(
+    local lspConfigPath = lazyAdd(
       require("lazy.core.config").options.root .. "/nvim-lspconfig",
       nixCats.extra("nixdExtras.nvim_lspconfig")
     )
@@ -63,18 +65,21 @@ local M = {
     })
 
     -- We use Mason-lspconfig when we are not in the nixcats world
-    if utils.isNixCats then
+    if isNixCats then
       for lsp, config in pairs(lsps) do
         if config then
           -- Merge any manually specified capabilities
-          config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities or {})
+          if nixCats("blink-cmp") then
+            config.capabilities =
+              require("blink.cmp").get_lsp_capabilities(config.capabilities or {})
+          end
           vim.lsp.config(lsp, config)
         end
       end
     end
 
     -- We use Mason-lspconfig when we are not in the nixcats world
-    if utils.isNixCats then
+    if isNixCats then
       local buf_read_pre_lsp = vim.api.nvim_create_augroup("buf-read-pre-lsp", { clear = true })
       local lsp_attach = vim.api.nvim_create_augroup("lsp-attach", { clear = true })
 
@@ -83,7 +88,7 @@ local M = {
         pattern = "*",
         callback = function(event)
           local km = vim.keymap
-          km.set("n", "<leader>rn", function() vim.lsp.rename() end, { desc = "[R]e[n]ame" })
+          km.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, { desc = "[R]e[n]ame" })
           km.set(
             "n",
             "<leader>dd",

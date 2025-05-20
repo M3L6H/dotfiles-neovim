@@ -1,10 +1,12 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 local M = {
   "folke/noice.nvim",
-  enabled = true,
+  enabled = lazyAdd(vim.g.plugins.noice, nixCats("noice")),
   dependencies = {
     "MunifTanjim/nui.nvim",
   },
-  event = "VeryLazy",
+  event = "CmdlineEnter",
   opts = {
     messages = {
       enabled = false,

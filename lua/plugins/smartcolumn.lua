@@ -1,6 +1,9 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 local M = {
   "m4xshen/smartcolumn.nvim",
-  event = "BufEnter",
+  enabled = lazyAdd(vim.g.plugins.smartcolumn, nixCats("smartcolumn")),
+  event = "BufReadPost",
   opts = {
     colorcolumn = "100",
     disabled_filetypes = {

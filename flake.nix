@@ -89,36 +89,94 @@
               with pkgs.vimPlugins;
               [
                 lazy-nvim
-                blink-cmp
-                conform-nvim
-                demicolon
-                fastaction-nvim
-                flash-nvim
-                guess-indent-nvim
-                lazydev-nvim
-                mini-diff
-                mini-icons
-                mini-statusline
-                mini-surround
-                noice-nvim
-                nui-nvim
-                nvim-autopairs
-                nvim-lspconfig
-                nvim-treesitter.withAllGrammars
-                nvim-treesitter-textobjects
-                nvim-web-devicons
-                oil-nvim
-                smartcolumn-nvim
-                smear-cursor-nvim
-                snacks-nvim
-                trouble-nvim
-                undotree
-                vim-tmux-navigator
-                which-key-nvim
               ]
               ++ [
                 pkgs.vimPlugins."${extra_pkg_params.colorscheme}-nvim"
               ];
+            autopairs = with pkgs.vimPlugins; [
+              nvim-autopairs
+            ];
+            blink-cmp = with pkgs.vimPlugins; [
+              blink-cmp
+
+              # depends on mini icons for icons in completion
+              mini-icons
+            ];
+            conform = with pkgs.vimPlugins; [
+              conform-nvim
+            ];
+            demicolon = with pkgs.vimPlugins; [
+              demicolon
+
+              # demicolon has a hard requirement on treesitter
+              nvim-treesitter.withAllGrammars
+              nvim-treesitter-textobjects
+            ];
+            fastaction = with pkgs.vimPlugins; [
+              fastaction-nvim
+            ];
+            flash = with pkgs.vimPlugins; [
+              flash-nvim
+            ];
+            guess-indent = with pkgs.vimPlugins; [
+              guess-indent-nvim
+            ];
+            lazydev = with pkgs.vimPlugins; [
+              lazydev-nvim
+            ];
+            lspconfig = with pkgs.vimPlugins; [
+              nvim-lspconfig
+            ];
+            mini-diff = with pkgs.vimPlugins; [
+              mini-diff
+            ];
+            mini-statusline = with pkgs.vimPlugins; [
+              mini-statusline
+            ];
+            mini-surround = with pkgs.vimPlugins; [
+              mini-surround
+            ];
+            noice = with pkgs.vimPlugins; [
+              noice-nvim
+              nui-nvim
+            ];
+            oil = with pkgs.vimPlugins; [
+              oil-nvim
+
+              # depends on mini icons for icons in file tree
+              mini-icons
+            ];
+            smartcolumn = with pkgs.vimPlugins; [
+              smartcolumn-nvim
+            ];
+            smear-cursor = with pkgs.vimPlugins; [
+              smear-cursor-nvim
+            ];
+            snacks = with pkgs.vimPlugins; [
+              snacks-nvim
+            ];
+            surround = with pkgs.vimPlugins; [
+              nvim-surround
+            ];
+            treesitter = with pkgs.vimPlugins; [
+              nvim-treesitter.withAllGrammars
+              nvim-treesitter-textobjects
+            ];
+            trouble = with pkgs.vimPlugins; [
+              trouble-nvim
+
+              # trouble uses web icons for its UI
+              nvim-web-devicons
+            ];
+            undotree = with pkgs.vimPlugins; [
+              undotree
+            ];
+            vim-tmux-navigator = with pkgs.vimPlugins; [
+              vim-tmux-navigator
+            ];
+            which-key = with pkgs.vimPlugins; [
+              which-key-nvim
+            ];
           };
 
           # Empty b/c we are using Lazy.nvim for lazy loading
@@ -126,6 +184,53 @@
         };
 
       packageDefinitions = {
+        minimal =
+          { ... }:
+          {
+            settings = {
+              suffix-path = true;
+              suffix-LD = true;
+              wrapRc = true;
+              aliases = [
+                "nvim"
+              ];
+              hosts.python3.enable = true;
+              hosts.node.enable = true;
+              unwrappedCfgPath = "${extra_pkg_params.homeDirectory}/.local/state/nvim/lazy";
+            };
+            categories = {
+              general = true;
+
+              dashboard = false;
+              lua = false;
+              nix = false;
+              picker = false;
+
+              autopairs = false;
+              blink-cmp = false;
+              conform = false;
+              demicolon = false;
+              fastaction = false;
+              flash = false;
+              guess-indent = false;
+              lazydev = false;
+              lspconfig = false;
+              mini-diff = false;
+              mini-statusline = false;
+              mini-surround = false;
+              noice = false;
+              oil = false;
+              smartcolumn = false;
+              smear-cursor = false;
+              snacks = false;
+              treesitter = false;
+              trouble = false;
+              undotree = false;
+              vim-tmux-navigator = false;
+              which-key = false;
+            };
+            extra = { };
+          };
         m3l6h-neovim =
           { pkgs, ... }:
           {
@@ -154,6 +259,30 @@
               lua = true;
               nix = true;
               picker = true;
+
+              autopairs = true;
+              blink-cmp = true;
+              conform = true;
+              demicolon = true;
+              fastaction = true;
+              flash = true;
+              guess-indent = true;
+              lazydev = true;
+              lspconfig = true;
+              mini-diff = true;
+              mini-statusline = true;
+              mini-surround = false;
+              noice = true;
+              oil = true;
+              smartcolumn = true;
+              smear-cursor = true;
+              snacks = true;
+              surround = true;
+              treesitter = true;
+              trouble = true;
+              undotree = true;
+              vim-tmux-navigator = true;
+              which-key = true;
             };
             extra = {
               nixdExtras.nixpkgs = ''import (builtins.getFlake "path:${builtins.toString inputs.self}").inputs.nixpkgs {}'';

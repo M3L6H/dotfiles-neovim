@@ -1,5 +1,8 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 local M = {
   "stevearc/oil.nvim",
+  enabled = lazyAdd(vim.g.plugins.oil, nixCats("oil")),
   dependencies = { { "echasnovski/mini.icons", opts = {} } },
   lazy = false,
   keys = {
@@ -20,9 +23,7 @@ local M = {
     },
     view_options = {
       show_hidden = true,
-      is_always_hidden = function(name, _)
-        return name == ".git" or name == ".."
-      end,
+      is_always_hidden = function(name, _) return name == ".git" or name == ".." end,
     },
     float = {
       border = vim.g.border,

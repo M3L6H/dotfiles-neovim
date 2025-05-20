@@ -1,5 +1,9 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 local M = {
   "echasnovski/mini.surround",
+  enabled = lazyAdd(vim.g.plugins["mini-surround"], nixCats("mini-surround")),
+  lazy = false,
   keys = {
     { "Sa", mode = { "n", "v" }, desc = "Surround add" },
     { "Sd", desc = "Surround delete" },
@@ -28,6 +32,7 @@ local M = {
       suffix_last = "N", -- Suffix to search with "prev" method
       suffix_next = "n", -- Suffix to search with "next" method
     },
+    silent = true,
   },
 }
 

@@ -1,5 +1,8 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 local M = {
   "mbbill/undotree",
+  enabled = lazyAdd(vim.g.plugins.undotree, nixCats("undotree")),
   keys = {
     {
       "<leader>u",

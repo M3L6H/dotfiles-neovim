@@ -1,5 +1,8 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 local M = {
   "christoomey/vim-tmux-navigator",
+  enabled = lazyAdd(vim.g.plugins["vim-tmux-navigator"], nixCats("vim-tmux-navigator")),
   cmd = {
     "TmuxNavigateLeft",
     "TmuxNavigateRight",
@@ -16,4 +19,3 @@ local M = {
 }
 
 return M
-

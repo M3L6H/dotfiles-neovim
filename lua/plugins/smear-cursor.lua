@@ -1,6 +1,9 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 local M = {
   "sphamba/smear-cursor.nvim",
-  event = "BufEnter",
+  enabled = lazyAdd(vim.g.plugins["smear-cursor"], nixCats("smear-cursor")),
+  event = "BufReadPost",
   opts = {
     stiffness = 0.8,
     trailing_stiffness = 0.5,
