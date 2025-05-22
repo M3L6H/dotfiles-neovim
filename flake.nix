@@ -5,8 +5,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    yuckls = {
+      url = "github:eugenenoble2005/yuckls";
+      flake = false;
     };
   };
 
@@ -62,6 +65,18 @@
                   "demicolon.repeat_jump"
                 ];
               };
+          yuckls =
+            with pkgs.dotnetCorePackages;
+            pkgs.buildDotnetModule {
+              pname = "yuckls";
+              version = "";
+
+              src = inputs.yuckls;
+              projectFile = "YuckLS/YuckLS.csproj";
+              dotnet-sdk = sdk_9_0;
+              dotnet-runtime = runtime_9_0;
+              nugetDeps = ./deps/yuckls.json;
+            };
         in
         {
           lspsAndRuntimeDeps = {
@@ -81,6 +96,9 @@
             picker = with pkgs; [
               fzf
               ripgrep
+            ];
+            yuck = [
+              yuckls
             ];
           };
 
@@ -228,6 +246,7 @@
               undotree = false;
               vim-tmux-navigator = false;
               which-key = false;
+              yuck = false;
             };
             extra = { };
           };
@@ -283,6 +302,7 @@
               undotree = true;
               vim-tmux-navigator = true;
               which-key = true;
+              yuck = true;
             };
             extra = {
               nixdExtras.nixpkgs = ''import (builtins.getFlake "path:${builtins.toString inputs.self}").inputs.nixpkgs {}'';

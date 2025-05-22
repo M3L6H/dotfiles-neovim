@@ -21,7 +21,7 @@ local lsps = {
     },
   },
   -- We shouldn't need nixd if we are running outside of nixCats!
-  nixd = lazyAdd(false, nixCats("nix") and {
+  nixd = lazyAdd(false, nixCats("nix")) and {
     pattern = { "*.nix" },
     settings = {
       nixd = {
@@ -39,7 +39,7 @@ local lsps = {
         formatting = { command = { "nixfmt" } },
       },
     },
-  }),
+  },
 }
 
 local M = {
@@ -127,6 +127,26 @@ local M = {
           end
         end
       end
+
+      -- Yuck lsp
+      vim.api.nvim_create_autocmd("BufReadPre", {
+        group = buf_read_pre_lsp,
+        pattern = { "*.yuck" },
+        callback = function(e)
+          local start_msg = string.format("Starting yuck ls for %s", vim.fs.basename(e.file))
+          if lazyAdd(vim.g.plugins.snacks, nixCats("snacks")) then
+            Snacks.notify.info(start_msg)
+          else
+            print(start_msg)
+          end
+
+          vim.lsp.start({
+            name = "YuckLS",
+            cmd = { "YuckLS" },
+            root_dir = vim.fn.getcwd(),
+          })
+        end,
+      })
     end
   end,
 }
