@@ -9,7 +9,11 @@ local M = {
   },
   event = "BufReadPost",
   opts = {
-    disabled_keys = { "p", "I", "A", "i" },
+    keymaps = {
+      -- Keep neovim's original behavior for ; and ,
+      repeat_motions = "stateful",
+      disabled_keys = { "p", "I", "A", "i" },
+    },
   },
 }
 

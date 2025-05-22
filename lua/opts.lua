@@ -93,3 +93,7 @@ vim.g.plugins.trouble = true
 vim.g.plugins.undotree = true
 vim.g.plugins["vim-tmux-navigator"] = true
 vim.g.plugins["which-key"] = true
+
+-- Language enablement opts
+vim.g.langs = {}
+vim.g.langs.yuck = false

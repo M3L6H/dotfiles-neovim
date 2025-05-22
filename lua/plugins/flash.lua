@@ -23,8 +23,8 @@ local M = {
       desc = "Toggle Flash Search",
     },
     {
-      "yr",
-      mode = { "n" },
+      "r",
+      mode = { "o" },
       function() require("flash").remote() end,
       desc = "Remote Flash",
     },

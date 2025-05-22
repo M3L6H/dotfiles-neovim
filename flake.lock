@@ -232,7 +232,8 @@
       "inputs": {
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixCats": "nixCats",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "yuckls": "yuckls"
       }
     },
     "treefmt-nix": {
@@ -253,6 +254,22 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "yuckls": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738989751,
+        "narHash": "sha256-oSohWZHh5RN8wQVCNvMQDwO4NVlj9432YidJTGDH+RM=",
+        "owner": "eugenenoble2005",
+        "repo": "yuckls",
+        "rev": "7de35f514201d29f9cc12d742160d9774bd2c1ec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "eugenenoble2005",
+        "repo": "yuckls",
         "type": "github"
       }
     }
