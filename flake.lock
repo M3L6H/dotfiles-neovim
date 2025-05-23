@@ -228,11 +228,45 @@
         "type": "github"
       }
     },
+    "nvzone-minty": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740723349,
+        "narHash": "sha256-jdz0cR1uz1EdxFCuxndsK9gyTZ2jg8wdYA0v33SevOg=",
+        "owner": "nvzone",
+        "repo": "minty",
+        "rev": "aafc9e8e0afe6bf57580858a2849578d8d8db9e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvzone",
+        "repo": "minty",
+        "type": "github"
+      }
+    },
+    "nvzone-volt": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744335032,
+        "narHash": "sha256-6zbcJAY1kH5SyHw1J2GZEFvD8iJvkhBDwMCnIfW1olc=",
+        "owner": "nvzone",
+        "repo": "volt",
+        "rev": "c45d5f48da8e802e608b5c6da471ca4d84276dfb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvzone",
+        "repo": "volt",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_2",
+        "nvzone-minty": "nvzone-minty",
+        "nvzone-volt": "nvzone-volt",
         "yuckls": "yuckls"
       }
     },

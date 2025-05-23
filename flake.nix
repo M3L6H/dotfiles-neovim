@@ -7,6 +7,16 @@
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
+    nvzone-minty = {
+      url = "github:nvzone/minty";
+      flake = false;
+    };
+
+    nvzone-volt = {
+      url = "github:nvzone/volt";
+      flake = false;
+    };
+
     yuckls = {
       url = "github:eugenenoble2005/yuckls";
       flake = false;
@@ -65,6 +75,33 @@
                   "demicolon.repeat_jump"
                 ];
               };
+          # These are in nixpkgs but the pname is wrong, so they are not correctly found by lazy
+          nvzone-minty =
+            (pkgs.vimUtils.buildVimPlugin {
+              pname = "minty";
+              version = "";
+              src = inputs.nvzone-minty;
+              meta.homepage = "https://github.com/nvzone/minty";
+            }).overrideAttrs
+              {
+                nvimSkipModules = [
+                  "minty.huefy.api"
+                  "minty.huefy.init"
+                  "minty.huefy.layout"
+                  "minty.huefy.state"
+                  "minty.huefy.ui"
+                  "minty.shades.init"
+                  "minty.shades.layout"
+                  "minty.shades.ui"
+                  "minty.utils"
+                ];
+              };
+          nvzone-volt = pkgs.vimUtils.buildVimPlugin {
+            pname = "volt";
+            version = "";
+            src = inputs.nvzone-volt;
+            meta.homepage = "https://github.com/nvzone/volt";
+          };
           yuckls =
             with pkgs.dotnetCorePackages;
             pkgs.buildDotnetModule {
@@ -80,6 +117,11 @@
         in
         {
           lspsAndRuntimeDeps = {
+            css = with pkgs; [
+              jsbeautifier
+              stylelint
+              vscode-langservers-extracted
+            ];
             dashboard = with pkgs; [
               chafa
               gh
@@ -123,6 +165,9 @@
             conform = with pkgs.vimPlugins; [
               conform-nvim
             ];
+            colorizer = with pkgs.vimPlugins; [
+              nvim-colorizer-lua
+            ];
             demicolon = with pkgs.vimPlugins; [
               demicolon
 
@@ -153,6 +198,12 @@
             ];
             mini-surround = with pkgs.vimPlugins; [
               mini-surround
+            ];
+            minty = [
+              nvzone-minty
+
+              # depends on volt for its UI
+              nvzone-volt
             ];
             noice = with pkgs.vimPlugins; [
               noice-nvim
@@ -219,14 +270,20 @@
             categories = {
               general = true;
 
+              # Functionality
               dashboard = false;
-              lua = false;
-              nix = false;
               picker = false;
 
+              # Languages/toolchains
+              css = false;
+              lua = false;
+              nix = false;
+
+              # Plugins
               autopairs = false;
               blink-cmp = false;
               conform = false;
+              colorizer = false;
               demicolon = false;
               fastaction = false;
               flash = false;
@@ -236,6 +293,7 @@
               mini-diff = false;
               mini-statusline = false;
               mini-surround = false;
+              minty = false;
               noice = false;
               oil = false;
               smartcolumn = false;
@@ -274,14 +332,20 @@
             categories = {
               general = true;
 
+              # Functionality
               dashboard = true;
-              lua = true;
-              nix = true;
               picker = true;
 
+              # Languages/toolchains
+              css = true;
+              lua = true;
+              nix = true;
+
+              # Plugins
               autopairs = true;
               blink-cmp = true;
               conform = true;
+              colorizer = true;
               demicolon = true;
               fastaction = true;
               flash = true;
@@ -291,6 +355,7 @@
               mini-diff = true;
               mini-statusline = true;
               mini-surround = false;
+              minty = true;
               noice = true;
               oil = true;
               smartcolumn = true;

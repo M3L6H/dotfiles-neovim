@@ -73,6 +73,7 @@ vim.g.plugins = {}
 vim.g.plugins.autopairs = true
 vim.g.plugins["blink-cmp"] = true
 vim.g.plugins.conform = true
+vim.g.plugins.colorizer = true
 vim.g.plugins.demicolon = true
 vim.g.plugins.fastaction = true
 vim.g.plugins.flash = true
@@ -82,6 +83,7 @@ vim.g.plugins.lspconfig = true
 vim.g.plugins["mini-diff"] = true
 vim.g.plugins["mini-statusline"] = true
 vim.g.plugins["mini-surround"] = false
+vim.g.plugins.minty = true
 vim.g.plugins.noice = true
 vim.g.plugins.oil = true
 vim.g.plugins.smartcolumn = true
@@ -96,4 +98,7 @@ vim.g.plugins["which-key"] = true
 
 -- Language enablement opts
 vim.g.langs = {}
+vim.g.langs.css = true
+vim.g.langs.lua = true
+vim.g.langs.nix = false
 vim.g.langs.yuck = false

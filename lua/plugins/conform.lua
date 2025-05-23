@@ -9,9 +9,16 @@ local M = {
     { "<leader>cf", function() require("conform").format() end, desc = "Code format" },
   },
   opts = {
+    formatters = {
+      css_beautify = {
+        cmd = "js-beautify",
+        args = { "--css" },
+      },
+    },
     formatters_by_ft = {
-      lua = { "stylua" },
-      nix = { "nixfmt" },
+      css = lazyAdd(vim.g.langs.css, nixCats("css")) and { "stylelint", "css_beautify" } or {},
+      lua = lazyAdd(vim.g.langs.lua, nixCats("lua")) and { "stylua" } or {},
+      nix = lazyAdd(vim.g.langs.nix, nixCats("nix")) and { "nixfmt" } or {},
     },
     default_format_opts = {
       lsp_format = "fallback",
