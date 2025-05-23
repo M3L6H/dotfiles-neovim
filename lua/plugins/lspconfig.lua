@@ -3,7 +3,24 @@ local lazyAdd = utils.lazyAdd
 local isNixCats = utils.isNixCats
 
 local lsps = {
-  lua_ls = lazyAdd(true, nixCats("lua")) and {
+  cssls = lazyAdd(vim.g.langs.css, nixCats("css")) and {
+    pattern = { "*.css", "*.less", "*.scss" },
+    settings = {
+      cssls = {
+        validate = true,
+        lint = {},
+        completion = {
+          triggerPropertyValueCompletion = true,
+          completePropertyWithSemicolon = true,
+        },
+        hover = {
+          documentation = true,
+          references = false,
+        },
+      },
+    },
+  },
+  lua_ls = lazyAdd(vim.g.langs.lua, nixCats("lua")) and {
     pattern = { "*.lua" },
     settings = {
       Lua = {
@@ -21,7 +38,7 @@ local lsps = {
     },
   },
   -- We shouldn't need nixd if we are running outside of nixCats!
-  nixd = lazyAdd(false, nixCats("nix")) and {
+  nixd = lazyAdd(vim.g.langs.nix, nixCats("nix")) and {
     pattern = { "*.nix" },
     settings = {
       nixd = {
