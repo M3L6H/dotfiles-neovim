@@ -41,10 +41,13 @@ km.set("n", "<leader>q", function()
 end, { desc = "Save and quit all" })
 km.set("n", "<leader>Q", close_all, { desc = "Quit all w/o saving" })
 
-km.set("v", "J", "<CMD>m '>+1<CR>gv=gv", { desc = "Move line down" })
-km.set("v", "K", "<CMD>m '<-2<CR>gv=gv", { desc = "Move line up" })
+km.set("n", "<A-j>", "<CMD>m .+1<CR>==", { desc = "Move line down" })
+km.set("n", "<A-k>", "<CMD>m .-2<CR>==", { desc = "Move line up" })
 
 km.set("n", "J", "mzJ`z", { desc = "Join with next line" })
+
+km.set("v", ">", "> gv^", { desc = "Indent selection && stay in indent mode" })
+km.set("v", "<", "< gv^", { desc = "Unindent selection && stay in indent mode" })
 
 km.set("n", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 km.set("v", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
