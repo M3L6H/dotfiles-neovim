@@ -90,6 +90,7 @@ vim.g.plugins.smartcolumn = true
 vim.g.plugins["smear-cursor"] = true
 vim.g.plugins.snacks = true
 vim.g.plugins.surround = true
+vim.g.plugins["tiny-inline-diagnostic"] = true
 vim.g.plugins.treesitter = true
 vim.g.plugins.trouble = true
 vim.g.plugins.undotree = true

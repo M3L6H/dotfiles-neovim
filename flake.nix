@@ -227,6 +227,9 @@
             surround = with pkgs.vimPlugins; [
               nvim-surround
             ];
+            tiny-inline-diagnostic = with pkgs.vimPlugins; [
+              tiny-inline-diagnostic-nvim
+            ];
             treesitter = with pkgs.vimPlugins; [
               nvim-treesitter.withAllGrammars
               nvim-treesitter-textobjects
@@ -299,6 +302,7 @@
               smartcolumn = false;
               smear-cursor = false;
               snacks = false;
+              tiny-inline-diagnostic = false;
               treesitter = false;
               trouble = false;
               undotree = false;
@@ -362,6 +366,7 @@
               smear-cursor = true;
               snacks = true;
               surround = true;
+              tiny-inline-diagnostic = true;
               treesitter = true;
               trouble = true;
               undotree = true;

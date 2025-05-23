@@ -71,6 +71,37 @@ local M = {
     vim.opt.runtimepath:prepend(lspConfigPath)
 
     vim.diagnostic.config({
+      underline = true,
+      virtual_text = lazyAdd(
+        vim.g.plugins["tiny-inline-diagnostic"],
+        nixCats("tiny-inline-diagnostic")
+      ) and false or {
+        severity = {
+          max = vim.diagnostic.severity.ERROR,
+          min = vim.diagnostic.severity.WARN,
+        },
+        source = "if_many",
+        prefix = function(diagnostic, i, total)
+          if i < total then return "" end
+
+          local p = ""
+
+          if diagnostic.severity == vim.diagnostic.severity.ERROR then
+            p = p .. " "
+          elseif diagnostic.severity == vim.diagnostic.severity.WARN then
+            p = p .. " "
+          elseif diagnostic.severity == vim.diagnostic.severity.INFO then
+            p = p .. "󰋼 "
+          elseif diagnostic.severity == vim.diagnostic.severity.HINT then
+            p = p .. "󰌵"
+          end
+
+          if total > 1 then p = p .. "" end
+
+          return p
+        end,
+        virt_text_pos = "eol_right_align",
+      },
       signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = " ",
@@ -79,6 +110,7 @@ local M = {
           [vim.diagnostic.severity.HINT] = "󰌵 ",
         },
       },
+      severity_sort = true,
     })
 
     -- We use Mason-lspconfig when we are not in the nixcats world
