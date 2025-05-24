@@ -1,4 +1,4 @@
-# neovim
+# dotfiles-neovim
 
 My personal neovim configuration put together using
 [nixCats](https://nixcats.org)
