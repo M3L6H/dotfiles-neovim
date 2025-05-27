@@ -19,6 +19,16 @@ Available config options.
 | `vim.g.dashboard.size`  | Size of the dashboard image to pass to chafa                |
 | `vim.g.terminalwindow`  | Specify the tmux window vim should switch to when "closing" |
 
+### Language options
+
+Each option listed is a boolean flag which toggles the corresponding language features on or off.
+
+| Option           |
+| ---------------- |
+| vim.g.langs.css  |
+| vim.g.langs.lua  |
+| vim.g.langs.nix  |
+| vim.g.langs.yuck |
 
 ## Dependencies
 
