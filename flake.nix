@@ -127,6 +127,13 @@
               gh
               imagemagick
             ];
+            # Dependencies for snacks image
+            image = with pkgs; [
+              ghostscript # Used to render pdf files
+              imagemagick
+              mermaid-cli # Used to render mermaid diagrams
+              tectonic # Used to render LaTeX expressions
+            ];
             lua = with pkgs; [
               lua-language-server
               stylua
@@ -280,6 +287,7 @@
 
               # Functionality
               dashboard = false;
+              image = false;
               picker = false;
 
               # Languages/toolchains
@@ -343,6 +351,7 @@
 
               # Functionality
               dashboard = true;
+              image = true;
               picker = true;
 
               # Languages/toolchains
