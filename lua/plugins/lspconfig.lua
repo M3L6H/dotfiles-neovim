@@ -20,6 +20,17 @@ local lsps = {
       },
     },
   },
+  bashls = lazyAdd(vim.g.langs.shell, nixCats("shell")) and {
+    pattern = { "*.bash", "*.sh" },
+    settings = {
+      bashls = {
+        shfmt = {
+          -- Follow redirection operators with a space
+          spaceRedirects = true,
+        },
+      },
+    },
+  },
   lua_ls = lazyAdd(vim.g.langs.lua, nixCats("lua")) and {
     pattern = { "*.lua" },
     settings = {
