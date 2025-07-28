@@ -160,7 +160,7 @@ local M = {
         },
       },
     },
-    image = { enabled = true },
+    image = { enabled = lazyAdd(vim.g.feat.image, nixCats("image")) },
     indent = {
       enabled = true,
       indent = {

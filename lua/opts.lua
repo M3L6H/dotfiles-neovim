@@ -104,3 +104,7 @@ vim.g.langs.lua = true
 vim.g.langs.nix = false
 vim.g.langs.shell = true
 vim.g.langs.yuck = false
+
+-- Feature enablement opts
+vim.g.feat = {}
+vim.g.feat.image = true
