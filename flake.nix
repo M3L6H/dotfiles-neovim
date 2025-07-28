@@ -139,6 +139,11 @@
               fzf
               ripgrep
             ];
+            shell = with pkgs; [
+              bash-language-server
+              shellcheck
+              shfmt
+            ];
             yuck = [
               yuckls
             ];
@@ -281,6 +286,8 @@
               css = false;
               lua = false;
               nix = false;
+              shell = false;
+              yuck = false;
 
               # Plugins
               autopairs = false;
@@ -308,7 +315,6 @@
               undotree = false;
               vim-tmux-navigator = false;
               which-key = false;
-              yuck = false;
             };
             extra = { };
           };
@@ -320,15 +326,14 @@
               suffix-path = true;
               suffix-LD = true;
               wrapRc = true;
-              aliases =
-                [
-                  "nvim"
-                ]
-                ++ nixpkgs.lib.optionals (extra_pkg_params.aliases.enable) [
-                  "v"
-                  "vi"
-                  "vim"
-                ];
+              aliases = [
+                "nvim"
+              ]
+              ++ nixpkgs.lib.optionals (extra_pkg_params.aliases.enable) [
+                "v"
+                "vi"
+                "vim"
+              ];
               hosts.python3.enable = true;
               hosts.node.enable = true;
               unwrappedCfgPath = "${extra_pkg_params.homeDirectory}/.local/state/nvim/lazy";
@@ -344,6 +349,8 @@
               css = true;
               lua = true;
               nix = true;
+              shell = true;
+              yuck = true;
 
               # Plugins
               autopairs = true;
@@ -372,7 +379,6 @@
               undotree = true;
               vim-tmux-navigator = true;
               which-key = true;
-              yuck = true;
             };
             extra = {
               nixdExtras.nixpkgs = ''import (builtins.getFlake "path:${builtins.toString inputs.self}").inputs.nixpkgs {}'';
