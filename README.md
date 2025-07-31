@@ -1,12 +1,12 @@
 # dotfiles-neovim
 
-My personal neovim configuration put together using
+My personal Neovim configuration put together using
 [nixCats](https://nixcats.org)
 with
 [lazy](https://lazy.folke.io)
 so that it is portable between Nix and non-Nix environments.
 
-![Two-column neovim dashboard made with folke Snacks.](images/dashboard.jpg)
+![Two-column Neovim dashboard made with folke Snacks.](images/dashboard.jpg)
 
 ## Options
 
@@ -24,14 +24,15 @@ Available config options.
 
 ### Language options
 
-Each option listed is a boolean flag which toggles the corresponding language features on or off.
+Each option listed is a Boolean flag which toggles the corresponding language features on or off.
 
-| Option           |
-| ---------------- |
-| vim.g.langs.css  |
-| vim.g.langs.lua  |
-| vim.g.langs.nix  |
-| vim.g.langs.yuck |
+| Option            |
+| ----------------  |
+| vim.g.langs.css   |
+| vim.g.langs.lua   |
+| vim.g.langs.nix   |
+| vim.g.langs.shell |
+| vim.g.langs.yuck  |
 
 ## Dependencies
 
