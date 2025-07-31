@@ -26,13 +26,14 @@ Available config options.
 
 Each option listed is a Boolean flag which toggles the corresponding language features on or off.
 
-| Option            |
-| ----------------  |
-| vim.g.langs.css   |
-| vim.g.langs.lua   |
-| vim.g.langs.nix   |
-| vim.g.langs.shell |
-| vim.g.langs.yuck  |
+| Option               |
+| -------------------- |
+| vim.g.langs.css      |
+| vim.g.langs.lua      |
+| vim.g.langs.markdown |
+| vim.g.langs.nix      |
+| vim.g.langs.shell    |
+| vim.g.langs.yuck     |
 
 ## Dependencies
 
