@@ -217,6 +217,9 @@
               # depends on volt for its UI
               nvzone-volt
             ];
+            multicursor = with pkgs.vimPlugins; [
+              multicursor-nvim
+            ];
             noice = with pkgs.vimPlugins; [
               noice-nvim
               nui-nvim
@@ -312,6 +315,7 @@
               mini-statusline = false;
               mini-surround = false;
               minty = false;
+              multicursor = false;
               noice = false;
               oil = false;
               smartcolumn = false;
@@ -376,6 +380,7 @@
               mini-statusline = true;
               mini-surround = false;
               minty = true;
+              multicursor = true;
               noice = true;
               oil = true;
               smartcolumn = true;

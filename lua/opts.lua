@@ -84,6 +84,7 @@ vim.g.plugins["mini-diff"] = true
 vim.g.plugins["mini-statusline"] = true
 vim.g.plugins["mini-surround"] = false
 vim.g.plugins.minty = true
+vim.g.plugins.multicursor = true
 vim.g.plugins.noice = true
 vim.g.plugins.oil = true
 vim.g.plugins.smartcolumn = true
