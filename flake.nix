@@ -224,6 +224,9 @@
             lspconfig = with pkgs.vimPlugins; [
               nvim-lspconfig
             ];
+            markdown = with pkgs.vimPlugins; [
+              render-markdown-nvim
+            ];
             mini-diff = with pkgs.vimPlugins; [
               mini-diff
             ];
@@ -318,6 +321,7 @@
               # Languages/toolchains
               css = false;
               lua = false;
+              markdown = false;
               nix = false;
               shell = false;
               yuck = false;
@@ -384,6 +388,7 @@
               # Languages/toolchains
               css = true;
               lua = true;
+              markdown = true;
               nix = true;
               shell = true;
               yuck = true;
