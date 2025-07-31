@@ -56,6 +56,10 @@ o.isfname:append("@-@")
 
 o.updatetime = 50
 
+-- Spelling stuff
+o.spell = true
+o.spelllang = "en_us"
+
 -- Border
 vim.g.border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
 
@@ -75,6 +79,7 @@ vim.g.plugins["blink-cmp"] = true
 vim.g.plugins.conform = true
 vim.g.plugins.colorizer = true
 vim.g.plugins.demicolon = true
+vim.g.plugins.dictionary = true
 vim.g.plugins.fastaction = true
 vim.g.plugins.flash = true
 vim.g.plugins["guess-indent"] = true
@@ -85,7 +90,7 @@ vim.g.plugins["mini-statusline"] = true
 vim.g.plugins["mini-surround"] = false
 vim.g.plugins.minty = true
 vim.g.plugins.multicursor = true
-vim.g.plugins.noice = true
+vim.g.plugins.noice = false
 vim.g.plugins.oil = true
 vim.g.plugins.smartcolumn = true
 vim.g.plugins["smear-cursor"] = true

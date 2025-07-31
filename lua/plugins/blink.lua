@@ -3,9 +3,16 @@ local lazyAdd = require("nixCatsUtils").lazyAdd
 local default_sources = { "lsp", "path", "snippets", "buffer" }
 
 local providers = {}
+local dependencies = { "echasnovski/mini.icons" }
+local per_filetype = {
+  lua = { inherit_defaults = true },
+  markdown = { inherit_defaults = true },
+  text = { inherit_defaults = true },
+}
 
 if lazyAdd(vim.g.plugins.lazydev, nixCats("lazydev")) then
-  table.insert(default_sources, 1, "lazydev")
+  table.insert(per_filetype.lua, "lazydev")
+
   providers["lazydev"] = {
     name = "LazyDev",
     module = "lazydev.integrations.blink",
@@ -13,10 +20,35 @@ if lazyAdd(vim.g.plugins.lazydev, nixCats("lazydev")) then
   }
 end
 
+if lazyAdd(vim.g.plugins.dictionary, nixCats("dictionary")) then
+  table.insert(dependencies, "archie-judd/blink-cmp-words")
+
+  table.insert(default_sources, "dictionary")
+
+  table.insert(per_filetype.markdown, "thesaurus")
+
+  providers["dictionary"] = {
+    name = "blink-cmp-words",
+    module = "blink-cmp-words.dictionary",
+    opts = {
+      dictionary_search_threshold = 3,
+      score_offset = 0,
+    },
+  }
+
+  providers["thesaurus"] = {
+    name = "blink-cmp-words",
+    module = "blink-cmp-words.thesaurus",
+    opts = {
+      score_offset = 0,
+    },
+  }
+end
+
 local M = {
   "saghen/blink.cmp",
   enabled = lazyAdd(vim.g.plugins["blink-cmp"], nixCats("blink-cmp")),
-  dependencies = { "echasnovski/mini.icons" },
+  dependencies = dependencies,
   event = { "CmdlineEnter", "InsertEnter" },
   opts = {
     keymap = {
@@ -181,6 +213,7 @@ local M = {
     sources = {
       default = default_sources,
       providers = providers,
+      per_filetype = per_filetype,
     },
     cmdline = {
       keymap = { preset = "inherit" },

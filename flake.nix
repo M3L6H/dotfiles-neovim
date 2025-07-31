@@ -58,6 +58,25 @@
         }:
         let
           # TODO Figure out how to do this idiomatically
+          blink-cmp-words =
+            (pkgs.vimUtils.buildVimPlugin {
+              pname = "blink-cmp-words";
+              version = "2025-06-26";
+              src = pkgs.fetchFromGitHub {
+                owner = "archie-judd";
+                repo = "blink-cmp-words";
+                rev = "81224ec2eb72115c84bb19ae566ef25083dbfed2";
+                hash = "sha256-y1rGiUXQWXkjr0XvWV7ZBEa7NsUqKGJ7wyDA8XPXwZQ=";
+              };
+              meta.homepage = "https://github.com/archie-judd/blink-cmp-words/";
+            }).overrideAttrs
+              {
+                nvimSkipModules = [
+                  "blink-cmp-words.dictionary"
+                  "blink-cmp-words.source"
+                  "blink-cmp-words.thesaurus"
+                ];
+              };
           demicolon =
             (pkgs.vimUtils.buildVimPlugin {
               pname = "demicolon.nvim";
@@ -187,6 +206,9 @@
               nvim-treesitter.withAllGrammars
               nvim-treesitter-textobjects
             ];
+            dictionary = [
+              blink-cmp-words
+            ];
             fastaction = with pkgs.vimPlugins; [
               fastaction-nvim
             ];
@@ -306,6 +328,7 @@
               conform = false;
               colorizer = false;
               demicolon = false;
+              dictionary = false;
               fastaction = false;
               flash = false;
               guess-indent = false;
@@ -371,6 +394,7 @@
               conform = true;
               colorizer = true;
               demicolon = true;
+              dictionary = true;
               fastaction = true;
               flash = true;
               guess-indent = true;
@@ -381,7 +405,7 @@
               mini-surround = false;
               minty = true;
               multicursor = true;
-              noice = true;
+              noice = false;
               oil = true;
               smartcolumn = true;
               smear-cursor = true;
