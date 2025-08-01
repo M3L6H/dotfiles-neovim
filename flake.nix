@@ -183,6 +183,7 @@
             ];
             markdown = with pkgs; [
               marksman
+              mdformat
               mdsf
             ];
             nix = with pkgs; [

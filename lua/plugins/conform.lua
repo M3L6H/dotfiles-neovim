@@ -81,7 +81,8 @@ local M = {
     formatters_by_ft = {
       css = lazyAdd(vim.g.langs.css, nixCats("css")) and { "stylelint", "css_beautify" } or {},
       lua = lazyAdd(vim.g.langs.lua, nixCats("lua")) and { "stylua" } or {},
-      markdown = lazyAdd(vim.g.langs.markdown, nixCats("markdown")) and { "mdsf" } or {},
+      markdown = lazyAdd(vim.g.langs.markdown, nixCats("markdown")) and { "mdsf", "mdformat" }
+        or {},
       nix = lazyAdd(vim.g.langs.nix, nixCats("nix")) and { "nixfmt" } or {},
       sh = lazyAdd(vim.g.langs.shell, nixCats("shell")) and { "shfmt" } or {},
     },
