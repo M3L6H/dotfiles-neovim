@@ -32,7 +32,7 @@ if lazyAdd(vim.g.plugins.dictionary, nixCats("dictionary")) then
     module = "blink-cmp-words.dictionary",
     opts = {
       dictionary_search_threshold = 3,
-      score_offset = 0,
+      score_offset = -1,
     },
   }
 
@@ -40,7 +40,7 @@ if lazyAdd(vim.g.plugins.dictionary, nixCats("dictionary")) then
     name = "blink-cmp-words",
     module = "blink-cmp-words.thesaurus",
     opts = {
-      score_offset = 0,
+      score_offset = -1,
     },
   }
 end
