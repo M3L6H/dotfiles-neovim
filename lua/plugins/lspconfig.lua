@@ -48,6 +48,10 @@ local lsps = {
       },
     },
   },
+  marksman = lazyAdd(vim.g.langs.markdown, nixCats("markdown")) and {
+    pattern = { "*.md" },
+    settings = {}, -- No settings for marksman
+  },
   -- We shouldn't need nixd if we are running outside of nixCats!
   nixd = lazyAdd(vim.g.langs.nix, nixCats("nix")) and {
     pattern = { "*.nix" },
