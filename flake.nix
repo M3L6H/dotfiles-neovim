@@ -71,10 +71,8 @@
               meta.homepage = "https://github.com/archie-judd/blink-cmp-words/";
             }).overrideAttrs
               {
-                nvimSkipModules = [
-                  "blink-cmp-words.dictionary"
-                  "blink-cmp-words.source"
-                  "blink-cmp-words.thesaurus"
+                dependencies = with pkgs.vimPlugins; [
+                  blink-cmp
                 ];
               };
           demicolon =
