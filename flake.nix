@@ -223,6 +223,7 @@
               nvim-lspconfig
             ];
             markdown = with pkgs.vimPlugins; [
+              bullets-vim
               render-markdown-nvim
             ];
             mini-diff = with pkgs.vimPlugins; [
