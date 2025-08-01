@@ -12,7 +12,7 @@ local M = {
   opts = {
     formatters = {
       css_beautify = {
-        cmd = "js-beautify",
+        command = "js-beautify",
         args = { "--css" },
       },
     },
