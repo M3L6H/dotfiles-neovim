@@ -72,10 +72,20 @@ vim.g.dashboard = {
   size = "60x32",
 }
 
+-- Language enablement opts
+vim.g.langs = {}
+vim.g.langs.css = true
+vim.g.langs.lua = true
+vim.g.langs.markdown = true
+vim.g.langs.nix = false
+vim.g.langs.shell = true
+vim.g.langs.yuck = false
+
 -- Plugin enablement opts
 vim.g.plugins = {}
 vim.g.plugins.autopairs = true
 vim.g.plugins["blink-cmp"] = true
+vim.g.plugins.bullets = true
 vim.g.plugins.conform = true
 vim.g.plugins.colorizer = true
 vim.g.plugins.demicolon = true
@@ -92,6 +102,7 @@ vim.g.plugins.minty = true
 vim.g.plugins.multicursor = true
 vim.g.plugins.noice = false
 vim.g.plugins.oil = true
+vim.g.plugins["render-markdown"] = true
 vim.g.plugins.smartcolumn = true
 vim.g.plugins["smear-cursor"] = true
 vim.g.plugins.snacks = true
@@ -102,15 +113,6 @@ vim.g.plugins.trouble = true
 vim.g.plugins.undotree = true
 vim.g.plugins["vim-tmux-navigator"] = true
 vim.g.plugins["which-key"] = true
-
--- Language enablement opts
-vim.g.langs = {}
-vim.g.langs.css = true
-vim.g.langs.lua = true
-vim.g.langs.markdown = true
-vim.g.langs.nix = false
-vim.g.langs.shell = true
-vim.g.langs.yuck = false
 
 -- Feature enablement opts
 vim.g.feat = {}

@@ -155,6 +155,9 @@
               lua-language-server
               stylua
             ];
+            markdown = with pkgs; [
+              marksman
+            ];
             nix = with pkgs; [
               nixd
               nixfmt-rfc-style
@@ -191,6 +194,9 @@
               # depends on mini icons for icons in completion
               mini-icons
             ];
+            bullets = with pkgs.vimPlugins; [
+              bullets-vim
+            ];
             conform = with pkgs.vimPlugins; [
               conform-nvim
             ];
@@ -222,10 +228,6 @@
             lspconfig = with pkgs.vimPlugins; [
               nvim-lspconfig
             ];
-            markdown = with pkgs.vimPlugins; [
-              bullets-vim
-              render-markdown-nvim
-            ];
             mini-diff = with pkgs.vimPlugins; [
               mini-diff
             ];
@@ -253,6 +255,9 @@
 
               # depends on mini icons for icons in file tree
               mini-icons
+            ];
+            render-markdown = with pkgs.vimPlugins; [
+              render-markdown-nvim
             ];
             smartcolumn = with pkgs.vimPlugins; [
               smartcolumn-nvim
@@ -328,6 +333,7 @@
               # Plugins
               autopairs = false;
               blink-cmp = false;
+              bullets = false;
               conform = false;
               colorizer = false;
               demicolon = false;
@@ -344,6 +350,7 @@
               multicursor = false;
               noice = false;
               oil = false;
+              render-markdown = false;
               smartcolumn = false;
               smear-cursor = false;
               snacks = false;
@@ -395,6 +402,7 @@
               # Plugins
               autopairs = true;
               blink-cmp = true;
+              bullets = true;
               conform = true;
               colorizer = true;
               demicolon = true;
@@ -411,6 +419,7 @@
               multicursor = true;
               noice = false;
               oil = true;
+              render-markdown = true;
               smartcolumn = true;
               smear-cursor = true;
               snacks = true;

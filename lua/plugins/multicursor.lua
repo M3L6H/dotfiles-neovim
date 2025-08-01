@@ -1,8 +1,10 @@
 local lazyAdd = require("nixCatsUtils").lazyAdd
 
+local enabled = lazyAdd(vim.g.plugins.multicursor, nixCats("multicursor"))
+
 local M = {
   "jake-stewart/multicursor.nvim",
-  enabled = lazyAdd(vim.g.plugins.multicursor, nixCats("multicursor")),
+  enabled = enabled,
   keys = {
     {
       "<up>",
@@ -30,25 +32,25 @@ local M = {
     },
     {
       "<C-leftmouse>",
-      require("multicursor-nvim").handleMouse,
+      enabled and require("multicursor-nvim").handleMouse,
       mode = { "n", "x" },
       desc = "Add cursor with click",
     },
     {
       "<C-leftdrag>",
-      require("multicursor-nvim").handleMouseDrag,
+      enabled and require("multicursor-nvim").handleMouseDrag,
       mode = { "n", "x" },
       desc = "Add cursors with drag",
     },
     {
       "<C-leftrelease>",
-      require("multicursor-nvim").handleMouseRelease,
+      enabled and require("multicursor-nvim").handleMouseRelease,
       mode = { "n", "x" },
       desc = "Stop adding cursors with drag",
     },
     {
       "<C-q>",
-      require("multicursor-nvim").toggleCursor,
+      enabled and require("multicursor-nvim").toggleCursor,
       mode = { "n", "x" },
       desc = "Toggle cursor disabled/enabled",
     },
