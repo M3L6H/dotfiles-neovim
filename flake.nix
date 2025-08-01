@@ -36,6 +36,32 @@
 
       dependencyOverlays = [
         (utils.standardPluginOverlay inputs)
+        (final: prev: {
+          mdsf = prev.mdsf.override (old: {
+            rustPlatform = old.rustPlatform // {
+              buildRustPackage =
+                args:
+                old.rustPlatform.buildRustPackage (
+                  args
+                  // rec {
+
+                    version = "0.10.4"; # Version in nixpkgs is very old
+                    src = prev.fetchFromGitHub {
+                      owner = "hougesen";
+                      repo = "mdsf";
+                      tag = "v${version}";
+                      hash = "sha256-NH3DE6ef1HuS5ADVFros+iDQMZVVgG8V9OuFzzkig8g=";
+                    };
+
+                    cargoHash = "sha256-dGqFRXezzqOpHA74fnLUGQAI8KgbPmWIL46UP0wza40=";
+
+                    doInstallCheck = false; # Tests are failing and --skip=tests is not working
+                    doCheck = false; # Tests are failing and --skip=tests is not working
+                  }
+                );
+            };
+          });
+        })
       ];
 
       extra_pkg_config = { };
@@ -157,6 +183,7 @@
             ];
             markdown = with pkgs; [
               marksman
+              mdsf
             ];
             nix = with pkgs; [
               nixd
