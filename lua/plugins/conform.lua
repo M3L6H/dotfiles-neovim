@@ -76,6 +76,9 @@ local M = {
         args = { "--css" },
       },
       mdsf = mdsf,
+      mdformat = {
+        prepend_args = { "--no-codeformatters" },
+      },
     },
     -- @type conform.FiletypeFormatter
     formatters_by_ft = {
