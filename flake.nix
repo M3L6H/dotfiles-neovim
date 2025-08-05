@@ -84,23 +84,6 @@
         }:
         let
           # TODO Figure out how to do this idiomatically
-          blink-cmp-words =
-            (pkgs.vimUtils.buildVimPlugin {
-              pname = "blink-cmp-words";
-              version = "2025-06-26";
-              src = pkgs.fetchFromGitHub {
-                owner = "archie-judd";
-                repo = "blink-cmp-words";
-                rev = "81224ec2eb72115c84bb19ae566ef25083dbfed2";
-                hash = "sha256-y1rGiUXQWXkjr0XvWV7ZBEa7NsUqKGJ7wyDA8XPXwZQ=";
-              };
-              meta.homepage = "https://github.com/archie-judd/blink-cmp-words/";
-            }).overrideAttrs
-              {
-                dependencies = with pkgs.vimPlugins; [
-                  blink-cmp
-                ];
-              };
           demicolon =
             (pkgs.vimUtils.buildVimPlugin {
               pname = "demicolon.nvim";
@@ -182,6 +165,7 @@
               stylua
             ];
             markdown = with pkgs; [
+              doctoc
               marksman
               mdformat
               mdsf
@@ -238,7 +222,7 @@
               nvim-treesitter.withAllGrammars
               nvim-treesitter-textobjects
             ];
-            dictionary = [
+            dictionary = with pkgs.vimPlugins; [
               blink-cmp-words
             ];
             fastaction = with pkgs.vimPlugins; [
