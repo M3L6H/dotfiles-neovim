@@ -97,8 +97,9 @@
               meta.homepage = "https://github.com/mawkler/demicolon.nvim/";
             }).overrideAttrs
               {
-                nvimSkipModules = [
-                  "demicolon.repeat_jump"
+                dependencies = with pkgs.vimPlugins; [
+                  nvim-treesitter
+                  nvim-treesitter-textobjects
                 ];
               };
           # These are in nixpkgs but the pname is wrong, so they are not correctly found by lazy
