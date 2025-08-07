@@ -179,6 +179,9 @@
               fzf
               ripgrep
             ];
+            rust = with pkgs; [
+              rust-analyzer
+            ];
             shell = with pkgs; [
               bash-language-server
               shellcheck
@@ -340,6 +343,7 @@
               lua = false;
               markdown = false;
               nix = false;
+              rust = false;
               shell = false;
               yuck = false;
 
@@ -409,6 +413,7 @@
               lua = true;
               markdown = true;
               nix = true;
+              rust = true;
               shell = true;
               yuck = true;
 
