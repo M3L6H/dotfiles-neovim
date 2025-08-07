@@ -72,6 +72,42 @@ local lsps = {
       },
     },
   },
+  rust_analyzer = lazyAdd(vim.g.langs.rust, nixCats("rust")) and {
+    pattern = { "*.rs" },
+    settings = {
+      ["rust-analyzer"] = {
+        assist = {
+          preferSelf = true,
+        },
+        completion = {
+          fullFunctionSignatures = {
+            enable = true,
+          },
+        },
+        diagnostics = {
+          styleLints = {
+            enable = true,
+          },
+        },
+        hover = {
+          actions = {
+            references = {
+              enable = true,
+            },
+          },
+          show = {
+            enumVariants = 10,
+            fields = 10,
+          },
+        },
+        imports = {
+          granularity = {
+            enforce = true,
+          },
+        },
+      },
+    },
+  },
 }
 
 local M = {

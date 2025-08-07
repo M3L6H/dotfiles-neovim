@@ -78,6 +78,7 @@ vim.g.langs.css = true
 vim.g.langs.lua = true
 vim.g.langs.markdown = true
 vim.g.langs.nix = false
+vim.g.langs.rust = true
 vim.g.langs.shell = true
 vim.g.langs.yuck = false
 
