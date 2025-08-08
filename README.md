@@ -58,15 +58,31 @@ Each dependency below has been prefixed by the nixCats category it is associated
 
 | Dependency | Purpose |
 | - | - |
+| css:jsbeautifier | Used to format CSS files |
+| css:stylelint | Used to lint CSS files |
+| css:vscode-languagservers-extracted | Language server for CSS |
 | dashboard:chafa | Used for image in dashboard |
 | dashboard:gh | Used for GitHub issues in dashboard |
 | dashboard:image-magick | Used for image in dashboard |
+| image:ghostscript | Used to render pdf files |
+| image:imagemagick | Used to convert image formats for rendering |
+| image:mermaid-cli | Used to render mermaid diagrams |
+| image:tectonic | Used to render LaTeX expressions |
 | lua:lua-language-server | Used for lua language support |
 | lua:stylua | Used for lua formatting |
+| markdown:doctoc | Used for generating table of contents in Markdown files |
+| markdown:marksman | Language server for Markdown |
+| markdown:mdformat | Used for formatting Markdown |
+| markdown:mdsf | Used for formatting code blocks in Markdown |
 | nix:nixd | Used for nix language support |
 | nix:nixfmt-rfc-style | Used for nix formatting |
 | picker:fzf | Used in picker |
 | picker:ripgrep | Used in picker |
+| rust:rust-analyzer | Language server for Rust |
+| shell:bash-language-server | Language server for Shell scripts |
+| shell:shellcheck | Linter for Shell scripts |
+| shell:shfmt | Used to format Shell scripts |
+| yuck:yuckls | Language server for Yuck |
 
 ## Language servers
 
