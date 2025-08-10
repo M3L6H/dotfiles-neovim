@@ -96,6 +96,7 @@ vim.g.plugins.flash = true
 vim.g.plugins["guess-indent"] = true
 vim.g.plugins.lazydev = true
 vim.g.plugins.lspconfig = true
+vim.g.plugins.mason = true
 vim.g.plugins["mini-diff"] = true
 vim.g.plugins["mini-statusline"] = true
 vim.g.plugins["mini-surround"] = false
