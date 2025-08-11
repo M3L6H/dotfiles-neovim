@@ -91,6 +91,7 @@ local M = {
           and { "mdsf", "mdformat", "doctoc" }
         or {},
       nix = lazyAdd(vim.g.langs.nix, nixCats("nix")) and { "nixfmt" } or {},
+      rust = lazyAdd(vim.g.langs.rust, nixCats("rust")) and { "rustfmt" } or {},
       sh = lazyAdd(vim.g.langs.shell, nixCats("shell")) and { "shfmt" } or {},
     },
     default_format_opts = {
