@@ -83,25 +83,6 @@
           ...
         }:
         let
-          # TODO Figure out how to do this idiomatically
-          demicolon =
-            (pkgs.vimUtils.buildVimPlugin {
-              pname = "demicolon.nvim";
-              version = "2025-04-25";
-              src = pkgs.fetchFromGitHub {
-                owner = "mawkler";
-                repo = "demicolon.nvim";
-                rev = "8d79e527dbbef9de06405a30258b8d752c0638c4";
-                hash = "sha256-UTzA9xX14zS6FV4g4HNWjyYyFPGE/Rc9dADa2+JFltU=";
-              };
-              meta.homepage = "https://github.com/mawkler/demicolon.nvim/";
-            }).overrideAttrs
-              {
-                dependencies = with pkgs.vimPlugins; [
-                  nvim-treesitter
-                  nvim-treesitter-textobjects
-                ];
-              };
           # These are in nixpkgs but the pname is wrong, so they are not correctly found by lazy
           nvzone-minty =
             (pkgs.vimUtils.buildVimPlugin {
@@ -220,7 +201,7 @@
               nvim-colorizer-lua
             ];
             demicolon = with pkgs.vimPlugins; [
-              demicolon
+              demicolon-nvim
 
               # demicolon has a hard requirement on treesitter
               nvim-treesitter.withAllGrammars
