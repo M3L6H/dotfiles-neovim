@@ -162,6 +162,7 @@
             ];
             rust = with pkgs; [
               rust-analyzer
+              rustfmt
             ];
             shell = with pkgs; [
               bash-language-server
