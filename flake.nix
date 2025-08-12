@@ -177,6 +177,7 @@
             ];
             typescript = with pkgs; [
               prettierd
+              vscode-langservers-extracted
             ];
             yuck = [
               yuckls
