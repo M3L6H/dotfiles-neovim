@@ -116,6 +116,10 @@ local lsps = {
       },
     },
   },
+  ts_ls = lazyAdd(vim.g.langs.typescript, nixCats("typescript")) and {
+    pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
+    settings = {},
+  },
 }
 
 local M = {
