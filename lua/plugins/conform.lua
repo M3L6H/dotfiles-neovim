@@ -27,10 +27,6 @@ local function mdsf(bufner)
 
     local languages = {}
 
-    if lazyAdd(vim.g.langs.css, nixCats("css")) then
-      table.insert(languages, mk_karr("css", "stylelint", "js-beautify"))
-    end
-
     if lazyAdd(vim.g.langs.nix, nixCats("lua")) then
       table.insert(languages, mk_karr("lua", "stylua"))
     end
@@ -41,6 +37,15 @@ local function mdsf(bufner)
 
     if lazyAdd(vim.g.langs.shell, nixCats("shell")) then
       table.insert(languages, mk_karr("sh", "shfmt"))
+    end
+
+    if lazyAdd(vim.g.langs.web, nixCats("web")) then
+      table.insert(languages, mk_karr("css", "prettierd", "stylelint"))
+      table.insert(languages, mk_karr("html", "prettierd"))
+      table.insert(languages, mk_karr("javascript", "prettierd"))
+      table.insert(languages, mk_karr("javascriptreact", "prettierd"))
+      table.insert(languages, mk_karr("typescript", "prettierd"))
+      table.insert(languages, mk_karr("typescriptreact", "prettierd"))
     end
 
     for i, lang in ipairs(languages) do
@@ -81,21 +86,18 @@ local M = {
     },
     -- @type conform.FiletypeFormatter
     formatters_by_ft = {
-      css = lazyAdd(vim.g.langs.css, nixCats("css")) and { "prettierd", "stylelint" } or {},
-      html = lazyAdd(vim.g.langs.html, nixCats("html")) and { "prettierd" } or {},
-      javascript = lazyAdd(vim.g.langs.typescript, nixCats("typescript")) and { "prettierd" } or {},
-      javascriptreact = lazyAdd(vim.g.langs.typescript, nixCats("typescript")) and { "prettierd" }
-        or {},
-      lua = lazyAdd(vim.g.langs.lua, nixCats("lua")) and { "stylua" } or {},
+      css = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd", "stylelint" },
+      html = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
+      javascript = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
+      javascriptreact = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
+      lua = lazyAdd(vim.g.langs.lua, nixCats("lua")) and { "stylua" },
       markdown = lazyAdd(vim.g.langs.markdown, nixCats("markdown"))
-          and { "mdsf", "mdformat", "doctoc" }
-        or {},
-      nix = lazyAdd(vim.g.langs.nix, nixCats("nix")) and { "nixfmt" } or {},
-      rust = lazyAdd(vim.g.langs.rust, nixCats("rust")) and { "rustfmt" } or {},
-      sh = lazyAdd(vim.g.langs.shell, nixCats("shell")) and { "shfmt" } or {},
-      typescript = lazyAdd(vim.g.langs.typescript, nixCats("typescript")) and { "prettierd" } or {},
-      typescriptreact = lazyAdd(vim.g.langs.typescript, nixCats("typescript")) and { "prettierd" }
-        or {},
+        and { "mdsf", "mdformat", "doctoc" },
+      nix = lazyAdd(vim.g.langs.nix, nixCats("nix")) and { "nixfmt" },
+      rust = lazyAdd(vim.g.langs.rust, nixCats("rust")) and { "rustfmt" },
+      sh = lazyAdd(vim.g.langs.shell, nixCats("shell")) and { "shfmt" },
+      typescript = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
+      typescriptreact = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
     },
     default_format_opts = {
       lsp_format = "fallback",
