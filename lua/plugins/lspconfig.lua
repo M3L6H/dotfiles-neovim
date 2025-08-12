@@ -31,6 +31,14 @@ local lsps = {
       },
     },
   },
+  eslint = lazyAdd(vim.g.langs.typescript, nixCats("typescript")) and {
+    pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
+    settings = {
+      format = {
+        enable = false, -- We use prettier for formatting
+      },
+    },
+  },
   lua_ls = lazyAdd(vim.g.langs.lua, nixCats("lua")) and {
     pattern = { "*.lua" },
     settings = {
