@@ -41,11 +41,11 @@ Each option listed is a Boolean flag which toggles the corresponding language fe
 
 | Option |
 | - |
-| vim.g.langs.css |
 | vim.g.langs.lua |
 | vim.g.langs.markdown |
 | vim.g.langs.nix |
 | vim.g.langs.shell |
+| vim.g.langs.web |
 | vim.g.langs.yuck |
 
 ## Dependencies
@@ -58,13 +58,9 @@ Each dependency below has been prefixed by the nixCats category it is associated
 
 | Dependency | Purpose |
 | - | - |
-| css:prettierd | Used to format CSS files |
-| css:stylelint | Used to lint CSS files |
-| css:vscode-languagservers-extracted | Language server for CSS |
 | dashboard:chafa | Used for image in dashboard |
 | dashboard:gh | Used for GitHub issues in dashboard |
 | dashboard:image-magick | Used for image in dashboard |
-| html:prettierd | Used to format HTML files |
 | image:ghostscript | Used to render pdf files |
 | image:imagemagick | Used to convert image formats for rendering |
 | image:mermaid-cli | Used to render mermaid diagrams |
@@ -83,7 +79,11 @@ Each dependency below has been prefixed by the nixCats category it is associated
 | shell:bash-language-server | Language server for Shell scripts |
 | shell:shellcheck | Linter for Shell scripts |
 | shell:shfmt | Used to format Shell scripts |
-| typescript:prettierd | Used to format JavaScript/TypeScript files |
+| web:emmet-language-server | Specialized language server to make writing HTML & CSS easier |
+| web:prettierd | Used to format various web files files |
+| web:stylelint | Used to lint CSS files |
+| web:typescript-language-server | Language server for JavaScript/TypeScript |
+| web:vscode-languagservers-extracted | Language server for CSS & eslint |
 | yuck:yuckls | Language server for Yuck |
 
 ## Language servers

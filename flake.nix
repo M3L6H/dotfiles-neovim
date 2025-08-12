@@ -125,18 +125,10 @@
         in
         {
           lspsAndRuntimeDeps = {
-            css = with pkgs; [
-              prettierd
-              stylelint
-              vscode-langservers-extracted
-            ];
             dashboard = with pkgs; [
               chafa
               gh
               imagemagick
-            ];
-            html = with pkgs; [
-              prettierd
             ];
             # Dependencies for snacks image
             image = with pkgs; [
@@ -175,9 +167,10 @@
               shellcheck
               shfmt
             ];
-            typescript = with pkgs; [
+            web = with pkgs; [
+              emmet-language-server
               prettierd
-              typescript
+              stylelint
               typescript-language-server
               vscode-langservers-extracted
             ];
@@ -337,14 +330,12 @@
               picker = false;
 
               # Languages/toolchains
-              css = false;
-              html = false;
               lua = false;
               markdown = false;
               nix = false;
               rust = false;
               shell = false;
-              typescript = false;
+              web = false;
               yuck = false;
 
               # Plugins
@@ -410,14 +401,12 @@
               picker = true;
 
               # Languages/toolchains
-              css = true;
-              html = true;
               lua = true;
               markdown = true;
               nix = true;
               rust = true;
               shell = true;
-              typescript = true;
+              web = true;
               yuck = true;
 
               # Plugins

@@ -3,7 +3,7 @@ local lazyAdd = utils.lazyAdd
 local isNixCats = utils.isNixCats
 
 local lsps = {
-  cssls = lazyAdd(vim.g.langs.css, nixCats("css")) and {
+  cssls = lazyAdd(vim.g.langs.web, nixCats("web")) and {
     pattern = { "*.css", "*.less", "*.scss" },
     settings = {
       cssls = {
@@ -31,7 +31,11 @@ local lsps = {
       },
     },
   },
-  eslint = lazyAdd(vim.g.langs.typescript, nixCats("typescript")) and {
+  emmet_language_server = lazyAdd(vim.g.langs.web, nixCats("web")) and {
+    pattern = { "*.css", "*.html", "*.jsx", "*.less", "*.sass", "*.scss", "*.tsx" },
+    settings = {},
+  },
+  eslint = lazyAdd(vim.g.langs.web, nixCats("web")) and {
     pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
     settings = {
       format = {
@@ -116,7 +120,7 @@ local lsps = {
       },
     },
   },
-  ts_ls = lazyAdd(vim.g.langs.typescript, nixCats("typescript")) and {
+  ts_ls = lazyAdd(vim.g.langs.web, nixCats("web")) and {
     pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
     settings = {},
   },
