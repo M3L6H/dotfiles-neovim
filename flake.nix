@@ -126,7 +126,7 @@
         {
           lspsAndRuntimeDeps = {
             css = with pkgs; [
-              jsbeautifier
+              prettierd
               stylelint
               vscode-langservers-extracted
             ];
@@ -134,6 +134,9 @@
               chafa
               gh
               imagemagick
+            ];
+            html = with pkgs; [
+              prettierd
             ];
             # Dependencies for snacks image
             image = with pkgs; [
@@ -171,6 +174,9 @@
               bash-language-server
               shellcheck
               shfmt
+            ];
+            typescript = with pkgs; [
+              prettierd
             ];
             yuck = [
               yuckls
@@ -329,11 +335,13 @@
 
               # Languages/toolchains
               css = false;
+              html = false;
               lua = false;
               markdown = false;
               nix = false;
               rust = false;
               shell = false;
+              typescript = false;
               yuck = false;
 
               # Plugins
@@ -400,11 +408,13 @@
 
               # Languages/toolchains
               css = true;
+              html = true;
               lua = true;
               markdown = true;
               nix = true;
               rust = true;
               shell = true;
+              typescript = true;
               yuck = true;
 
               # Plugins
