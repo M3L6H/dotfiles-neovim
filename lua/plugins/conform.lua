@@ -71,10 +71,6 @@ local M = {
   opts = {
     notify_no_formatters = true,
     formatters = {
-      css_beautify = {
-        command = "js-beautify",
-        args = { "--css" },
-      },
       doctoc = {
         prepend_args = { "--title", "**Table of Contents**" },
       },
@@ -85,7 +81,11 @@ local M = {
     },
     -- @type conform.FiletypeFormatter
     formatters_by_ft = {
-      css = lazyAdd(vim.g.langs.css, nixCats("css")) and { "stylelint", "css_beautify" } or {},
+      css = lazyAdd(vim.g.langs.css, nixCats("css")) and { "prettierd", "stylelint" } or {},
+      html = lazyAdd(vim.g.langs.html, nixCats("html")) and { "prettierd" } or {},
+      javascript = lazyAdd(vim.g.langs.typescript, nixCats("typescript")) and { "prettierd" } or {},
+      javascriptreact = lazyAdd(vim.g.langs.typescript, nixCats("typescript")) and { "prettierd" }
+        or {},
       lua = lazyAdd(vim.g.langs.lua, nixCats("lua")) and { "stylua" } or {},
       markdown = lazyAdd(vim.g.langs.markdown, nixCats("markdown"))
           and { "mdsf", "mdformat", "doctoc" }
@@ -93,6 +93,9 @@ local M = {
       nix = lazyAdd(vim.g.langs.nix, nixCats("nix")) and { "nixfmt" } or {},
       rust = lazyAdd(vim.g.langs.rust, nixCats("rust")) and { "rustfmt" } or {},
       sh = lazyAdd(vim.g.langs.shell, nixCats("shell")) and { "shfmt" } or {},
+      typescript = lazyAdd(vim.g.langs.typescript, nixCats("typescript")) and { "prettierd" } or {},
+      typescriptreact = lazyAdd(vim.g.langs.typescript, nixCats("typescript")) and { "prettierd" }
+        or {},
     },
     default_format_opts = {
       lsp_format = "fallback",

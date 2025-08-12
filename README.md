@@ -58,12 +58,13 @@ Each dependency below has been prefixed by the nixCats category it is associated
 
 | Dependency | Purpose |
 | - | - |
-| css:jsbeautifier | Used to format CSS files |
+| css:prettierd | Used to format CSS files |
 | css:stylelint | Used to lint CSS files |
 | css:vscode-languagservers-extracted | Language server for CSS |
 | dashboard:chafa | Used for image in dashboard |
 | dashboard:gh | Used for GitHub issues in dashboard |
 | dashboard:image-magick | Used for image in dashboard |
+| html:prettierd | Used to format HTML files |
 | image:ghostscript | Used to render pdf files |
 | image:imagemagick | Used to convert image formats for rendering |
 | image:mermaid-cli | Used to render mermaid diagrams |
@@ -82,6 +83,7 @@ Each dependency below has been prefixed by the nixCats category it is associated
 | shell:bash-language-server | Language server for Shell scripts |
 | shell:shellcheck | Linter for Shell scripts |
 | shell:shfmt | Used to format Shell scripts |
+| typescript:prettierd | Used to format JavaScript/TypeScript files |
 | yuck:yuckls | Language server for Yuck |
 
 ## Language servers

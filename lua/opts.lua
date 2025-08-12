@@ -75,11 +75,13 @@ vim.g.dashboard = {
 -- Language enablement opts
 vim.g.langs = {}
 vim.g.langs.css = true
+vim.g.langs.html = true
 vim.g.langs.lua = true
 vim.g.langs.markdown = true
 vim.g.langs.nix = false
 vim.g.langs.rust = true
 vim.g.langs.shell = true
+vim.g.langs.typescript = true
 vim.g.langs.yuck = false
 
 -- Plugin enablement opts
