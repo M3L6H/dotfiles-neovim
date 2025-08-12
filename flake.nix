@@ -142,6 +142,9 @@
               mermaid-cli # Used to render mermaid diagrams
               tectonic # Used to render LaTeX expressions
             ];
+            image-paste = with pkgs; [
+              wl-clipboard
+            ];
             lua = with pkgs; [
               lua-language-server
               stylua
@@ -219,6 +222,9 @@
             ];
             guess-indent = with pkgs.vimPlugins; [
               guess-indent-nvim
+            ];
+            image-paste = with pkgs.vimPlugins; [
+              img-clip-nvim
             ];
             lazydev = with pkgs.vimPlugins; [
               lazydev-nvim
@@ -318,6 +324,7 @@
               # Functionality
               dashboard = false;
               image = false;
+              image-paste = false;
               picker = false;
 
               # Languages/toolchains
@@ -388,6 +395,7 @@
               # Functionality
               dashboard = true;
               image = true;
+              image-paste = true;
               picker = true;
 
               # Languages/toolchains
