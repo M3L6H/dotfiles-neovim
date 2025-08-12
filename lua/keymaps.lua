@@ -1,3 +1,5 @@
+local lazyAdd = require("nixCatsUtils").lazyAdd
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -52,7 +54,10 @@ km.set("v", "<", "< gv^", { desc = "Unindent selection && stay in indent mode" }
 km.set("n", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 km.set("v", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 
-km.set("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
+if not lazyAdd(vim.g.feat["image-paste"], nixCats("image-paste")) then
+  km.set("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
+end
+
 km.set("v", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 km.set("n", "<leader>P", '"+P', { desc = "Paste from system clipboard" })
 

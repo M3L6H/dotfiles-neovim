@@ -119,3 +119,4 @@ vim.g.plugins["which-key"] = true
 -- Feature enablement opts
 vim.g.feat = {}
 vim.g.feat.image = true
+vim.g.feat["image-paste"] = true
