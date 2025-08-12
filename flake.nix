@@ -177,6 +177,8 @@
             ];
             typescript = with pkgs; [
               prettierd
+              typescript
+              typescript-language-server
               vscode-langservers-extracted
             ];
             yuck = [
