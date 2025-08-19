@@ -3,6 +3,27 @@ local lazyAdd = utils.lazyAdd
 local isNixCats = utils.isNixCats
 
 local lsps = {
+  codebook = lazyAdd(vim.g.feat.dictionary, nixCats("dictionary")) and {
+    pattern = {
+      "*.c",
+      "*.css",
+      "*.go",
+      "*.html",
+      "*.java",
+      "*.js",
+      "*.jsx",
+      "*.lua",
+      "*.md",
+      "*.py",
+      "*.rb",
+      "*.rs",
+      "*.toml",
+      "*.txt",
+      "*.ts",
+      "*.tsx",
+    },
+    settings = {},
+  },
   cssls = lazyAdd(vim.g.langs.web, nixCats("web")) and {
     pattern = { "*.css", "*.less", "*.scss" },
     settings = {

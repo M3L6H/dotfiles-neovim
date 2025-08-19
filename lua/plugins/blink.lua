@@ -20,7 +20,7 @@ if lazyAdd(vim.g.plugins.lazydev, nixCats("lazydev")) then
   }
 end
 
-if lazyAdd(vim.g.plugins.dictionary, nixCats("dictionary")) then
+if lazyAdd(vim.g.feat.dictionary, nixCats("dictionary")) then
   table.insert(dependencies, "archie-judd/blink-cmp-words")
 
   table.insert(default_sources, "dictionary")

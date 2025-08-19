@@ -90,7 +90,6 @@ vim.g.plugins.bullets = true
 vim.g.plugins.conform = true
 vim.g.plugins.colorizer = true
 vim.g.plugins.demicolon = true
-vim.g.plugins.dictionary = true
 vim.g.plugins.fastaction = true
 vim.g.plugins.flash = true
 vim.g.plugins["guess-indent"] = true
@@ -118,5 +117,6 @@ vim.g.plugins["which-key"] = true
 
 -- Feature enablement opts
 vim.g.feat = {}
+vim.g.feat.dictionary = true
 vim.g.feat.image = true
 vim.g.feat["image-paste"] = true
