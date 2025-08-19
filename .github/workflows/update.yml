@@ -21,6 +21,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         uses: DeterminateSystems/update-flake-lock@main
         with:
+          commit-msg: 'build(deps): update flake.lock'
           pr-reviewers: m3l6h
           pr-labels: |
             automated
