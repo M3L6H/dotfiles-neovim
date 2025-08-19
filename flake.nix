@@ -162,6 +162,7 @@
               ripgrep
             ];
             rust = with pkgs; [
+              cargo
               rust-analyzer
               rustfmt
             ];
