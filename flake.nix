@@ -130,6 +130,9 @@
               gh
               imagemagick
             ];
+            dictionary = with pkgs; [
+              codebook
+            ];
             # Dependencies for snacks image
             image = with pkgs; [
               ghostscript # Used to render pdf files
