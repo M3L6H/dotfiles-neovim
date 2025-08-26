@@ -7,16 +7,6 @@
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
-    nvzone-minty = {
-      url = "github:nvzone/minty";
-      flake = false;
-    };
-
-    nvzone-volt = {
-      url = "github:nvzone/volt";
-      flake = false;
-    };
-
     yuckls = {
       url = "github:eugenenoble2005/yuckls";
       flake = false;
@@ -34,35 +24,7 @@
       luaPath = "${./.}";
       forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
 
-      dependencyOverlays = [
-        (utils.standardPluginOverlay inputs)
-        (final: prev: {
-          mdsf = prev.mdsf.override (old: {
-            rustPlatform = old.rustPlatform // {
-              buildRustPackage =
-                args:
-                old.rustPlatform.buildRustPackage (
-                  args
-                  // rec {
-
-                    version = "0.10.4"; # Version in nixpkgs is very old
-                    src = prev.fetchFromGitHub {
-                      owner = "hougesen";
-                      repo = "mdsf";
-                      tag = "v${version}";
-                      hash = "sha256-NH3DE6ef1HuS5ADVFros+iDQMZVVgG8V9OuFzzkig8g=";
-                    };
-
-                    cargoHash = "sha256-dGqFRXezzqOpHA74fnLUGQAI8KgbPmWIL46UP0wza40=";
-
-                    doInstallCheck = false; # Tests are failing and --skip=tests is not working
-                    doCheck = false; # Tests are failing and --skip=tests is not working
-                  }
-                );
-            };
-          });
-        })
-      ];
+      dependencyOverlays = [ ];
 
       extra_pkg_config = { };
 
@@ -83,33 +45,6 @@
           ...
         }:
         let
-          # These are in nixpkgs but the pname is wrong, so they are not correctly found by lazy
-          nvzone-minty =
-            (pkgs.vimUtils.buildVimPlugin {
-              pname = "minty";
-              version = "";
-              src = inputs.nvzone-minty;
-              meta.homepage = "https://github.com/nvzone/minty";
-            }).overrideAttrs
-              {
-                nvimSkipModules = [
-                  "minty.huefy.api"
-                  "minty.huefy.init"
-                  "minty.huefy.layout"
-                  "minty.huefy.state"
-                  "minty.huefy.ui"
-                  "minty.shades.init"
-                  "minty.shades.layout"
-                  "minty.shades.ui"
-                  "minty.utils"
-                ];
-              };
-          nvzone-volt = pkgs.vimUtils.buildVimPlugin {
-            pname = "volt";
-            version = "";
-            src = inputs.nvzone-volt;
-            meta.homepage = "https://github.com/nvzone/volt";
-          };
           yuckls =
             with pkgs.dotnetCorePackages;
             pkgs.buildDotnetModule {
@@ -247,7 +182,7 @@
             mini-surround = with pkgs.vimPlugins; [
               mini-surround
             ];
-            minty = [
+            minty = with pkgs.vimPlugins; [
               nvzone-minty
 
               # depends on volt for its UI
