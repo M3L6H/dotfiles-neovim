@@ -87,6 +87,8 @@ local M = {
     -- @type conform.FiletypeFormatter
     formatters_by_ft = {
       css = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd", "stylelint" },
+      gd = lazyAdd(vim.g.langs.godot, nixCats("godot")) and { "gdformat" },
+      gdscript = lazyAdd(vim.g.langs.godot, nixCats("godot")) and { "gdformat" },
       html = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
       javascript = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
       javascriptreact = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },

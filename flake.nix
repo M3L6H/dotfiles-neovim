@@ -68,6 +68,9 @@
             dictionary = with pkgs; [
               codebook
             ];
+            godot = with pkgs; [
+              gdtoolkit_4
+            ];
             # Dependencies for snacks image
             image = with pkgs; [
               ghostscript # Used to render pdf files
@@ -269,6 +272,7 @@
               picker = false;
 
               # Languages/toolchains
+              godot = false;
               lua = false;
               markdown = false;
               nix = false;
@@ -340,6 +344,7 @@
               picker = true;
 
               # Languages/toolchains
+              godot = true;
               lua = true;
               markdown = true;
               nix = true;
