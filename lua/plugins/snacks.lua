@@ -185,6 +185,13 @@ local M = {
         sqlite3_path = lazyAdd(nil, nixCats.extra("nixdExtras.sqlite3_path")),
       },
       actions = nixCats("trouble") and require("trouble.sources.snacks").actions,
+      sources = {
+        explorer = { hidden = true, ignored = true, exclude = { ".git" } },
+        files = { hidden = true, ignored = true, exclude = { ".git" } },
+        grep = { hidden = true, ignored = true, exclude = { ".git" } },
+        grep_buffers = { hidden = true, ignored = true, exclude = { ".git" } },
+        grep_word = { hidden = true, ignored = true, exclude = { ".git" } },
+      },
       win = {
         input = {
           keys = {
