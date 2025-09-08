@@ -64,6 +64,12 @@ local lsps = {
       },
     },
   },
+  gdscript = lazyAdd(vim.g.langs.godot, nixCats("godot")) and {
+    pattern = { "*.gd", "*.gdscript" },
+    settings = {
+      gdscript = {},
+    },
+  },
   lua_ls = lazyAdd(vim.g.langs.lua, nixCats("lua")) and {
     pattern = { "*.lua" },
     settings = {
