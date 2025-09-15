@@ -116,6 +116,9 @@
               typescript-language-server
               vscode-langservers-extracted
             ];
+            yaml = with pkgs; [
+              yamlfmt
+            ];
             yuck = [
               yuckls
             ];
@@ -279,6 +282,7 @@
               rust = false;
               shell = false;
               web = false;
+              yaml = false;
               yuck = false;
 
               # Plugins
@@ -351,6 +355,7 @@
               rust = true;
               shell = true;
               web = true;
+              yaml = true;
               yuck = true;
 
               # Plugins

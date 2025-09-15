@@ -46,6 +46,7 @@ Each option listed is a Boolean flag which toggles the corresponding language fe
 | vim.g.langs.nix |
 | vim.g.langs.shell |
 | vim.g.langs.web |
+| vim.g.langs.yaml |
 | vim.g.langs.yuck |
 
 ## Dependencies

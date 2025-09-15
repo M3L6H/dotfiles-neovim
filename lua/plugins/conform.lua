@@ -39,13 +39,18 @@ local function mdsf(bufner)
       table.insert(languages, mk_karr("sh", "shfmt"))
     end
 
+    if lazyAdd(vim.g.langs.yaml, nixCats("yaml")) then
+      table.insert(languages, mk_karr("yaml", "yamlfmt"))
+    end
+
     if lazyAdd(vim.g.langs.web, nixCats("web")) then
-      table.insert(languages, mk_karr("css", "prettierd", "stylelint"))
-      table.insert(languages, mk_karr("html", "prettierd"))
-      table.insert(languages, mk_karr("javascript", "prettierd"))
-      table.insert(languages, mk_karr("javascriptreact", "prettierd"))
-      table.insert(languages, mk_karr("typescript", "prettierd"))
-      table.insert(languages, mk_karr("typescriptreact", "prettierd"))
+      -- prettierd is only supported in the mdsf 0.10.7
+      -- table.insert(languages, mk_karr("css", "prettierd"))
+      -- table.insert(languages, mk_karr("html", "prettierd"))
+      -- table.insert(languages, mk_karr("javascript", "prettierd"))
+      -- table.insert(languages, mk_karr("javascriptreact", "prettierd"))
+      -- table.insert(languages, mk_karr("typescript", "prettierd"))
+      -- table.insert(languages, mk_karr("typescriptreact", "prettierd"))
     end
 
     for i, lang in ipairs(languages) do
@@ -100,6 +105,8 @@ local M = {
       sh = lazyAdd(vim.g.langs.shell, nixCats("shell")) and { "shfmt" },
       typescript = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
       typescriptreact = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
+      yaml = lazyAdd(vim.g.langs.yaml, nixCats("yaml")) and { "yamlfmt" },
+      yml = lazyAdd(vim.g.langs.yaml, nixCats("yaml")) and { "yamlfmt" },
     },
     default_format_opts = {
       lsp_format = "fallback",
