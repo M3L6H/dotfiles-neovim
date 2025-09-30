@@ -148,7 +148,8 @@ local M = {
             enabled = function() return gh.enabled and Snacks.git.get_root() ~= nil end,
             cmd = "gh issue list -L "
               .. gh.height
-              .. ' | awk -F\'\\t\' \'{ print "\\033[32m"$1"\\t\\033[36m"$4"\\t\\033[0m"$3; }\'',
+              .. ' | awk -F\'\\t\' \'{ s = "\\033[32m"$1"\\t\\033[36m"$4"\\t\\033[0m"$3;'
+              .. ' if (length(s) < 61) print s; else print substr(s, 0, 57) "..."; }\'',
             key = "i",
             action = function() vim.fn.jobstart("gh issue list --web", { detach = true }) end,
             height = gh.height - base_height,
