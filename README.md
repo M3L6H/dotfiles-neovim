@@ -9,14 +9,16 @@ so that it is portable between Nix and non-Nix environments.
 ![Two-column Neovim dashboard made with folke Snacks.](images/dashboard.jpg)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
-  - [Options](#options)
-    - [Language options](#language-options)
-  - [Dependencies](#dependencies)
-  - [Language servers](#language-servers)
-  - [Development](#development)
+- [Options](#options)
+  - [Language options](#language-options)
+- [Dependencies](#dependencies)
+- [Language servers](#language-servers)
+- [Development](#development)
 - [Credits](#credits)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -102,6 +104,14 @@ Make any changes to the appropriate files, then run
 
 ```sh
 nix build .
+```
+
+### Debugging
+
+Check the flake interactively with:
+
+```sh
+nix repl --expr "builtins.getFlake \"$PWD\""
 ```
 
 # Credits

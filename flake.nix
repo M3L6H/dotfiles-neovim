@@ -21,6 +21,9 @@
     }@inputs:
     let
       inherit (nixCats) utils;
+
+      namespace = "m3l6h";
+
       luaPath = "${./.}";
       forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
 
@@ -318,7 +321,7 @@
             };
             extra = { };
           };
-        m3l6h-neovim =
+        neovim =
           { pkgs, ... }:
           {
             settings = {
@@ -400,7 +403,7 @@
             };
           };
       };
-      defaultPackageName = "m3l6h-neovim";
+      defaultPackageName = "neovim";
     in
 
     forEachSystem (
@@ -435,7 +438,7 @@
       let
         # we also export a nixos module to allow reconfiguration from configuration.nix
         nixosModule = utils.mkNixosModules {
-          moduleNamespace = [ defaultPackageName ];
+          moduleNamespace = [ namespace ];
           inherit
             defaultPackageName
             dependencyOverlays
@@ -449,7 +452,7 @@
         };
         # and the same for home manager
         homeModule = utils.mkHomeModules {
-          moduleNamespace = [ defaultPackageName ];
+          moduleNamespace = [ namespace ];
           inherit
             defaultPackageName
             dependencyOverlays
