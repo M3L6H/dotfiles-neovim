@@ -91,7 +91,12 @@
             markdown = with pkgs; [
               doctoc
               marksman
-              mdformat
+              (python313.withPackages (
+                ps: with ps; [
+                  mdformat
+                  mdformat-wikilink
+                ]
+              ))
               mdsf
             ];
             nix = with pkgs; [
@@ -419,7 +424,7 @@
             ;
         } categoryDefinitions packageDefinitions;
         defaultPackage = nixCatsBuilder defaultPackageName;
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs { stdenv.hostPlatform = { inherit system; }; };
       in
       {
         packages = utils.mkAllWithDefault defaultPackage;
