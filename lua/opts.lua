@@ -82,7 +82,6 @@ vim.g.langs.rust = true
 vim.g.langs.shell = true
 vim.g.langs.web = true
 vim.g.langs.yaml = true
-vim.g.langs.yuck = false
 
 -- Plugin enablement opts
 vim.g.plugins = {}

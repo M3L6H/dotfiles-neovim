@@ -9,16 +9,15 @@ so that it is portable between Nix and non-Nix environments.
 ![Two-column Neovim dashboard made with folke Snacks.](images/dashboard.jpg)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 **Table of Contents**
 
-- [Options](#options)
-  - [Language options](#language-options)
-- [Dependencies](#dependencies)
-- [Language servers](#language-servers)
-- [Development](#development)
+  - [Options](#options)
+    - [Language options](#language-options)
+  - [Dependencies](#dependencies)
+  - [Language servers](#language-servers)
+  - [Development](#development)
+    - [Debugging](#debugging)
 - [Credits](#credits)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -49,7 +48,6 @@ Each option listed is a Boolean flag which toggles the corresponding language fe
 | vim.g.langs.shell |
 | vim.g.langs.web |
 | vim.g.langs.yaml |
-| vim.g.langs.yuck |
 
 ## Dependencies
 
@@ -87,7 +85,6 @@ Each dependency below has been prefixed by the nixCats category it is associated
 | web:stylelint | Used to lint CSS files |
 | web:typescript-language-server | Language server for JavaScript/TypeScript |
 | web:vscode-languagservers-extracted | Language server for CSS & eslint |
-| yuck:yuckls | Language server for Yuck |
 
 ## Language servers
 
