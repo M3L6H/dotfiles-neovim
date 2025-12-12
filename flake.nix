@@ -6,11 +6,6 @@
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-
-    yuckls = {
-      url = "github:eugenenoble2005/yuckls";
-      flake = false;
-    };
   };
 
   outputs =
@@ -47,20 +42,6 @@
           pkgs,
           ...
         }:
-        let
-          yuckls =
-            with pkgs.dotnetCorePackages;
-            pkgs.buildDotnetModule {
-              pname = "yuckls";
-              version = "";
-
-              src = inputs.yuckls;
-              projectFile = "YuckLS/YuckLS.csproj";
-              dotnet-sdk = sdk_9_0;
-              dotnet-runtime = runtime_9_0;
-              nugetDeps = ./deps/yuckls.json;
-            };
-        in
         {
           lspsAndRuntimeDeps = {
             dashboard = with pkgs; [
@@ -126,9 +107,6 @@
             ];
             yaml = with pkgs; [
               yamlfmt
-            ];
-            yuck = [
-              yuckls
             ];
           };
 
@@ -291,7 +269,6 @@
               shell = false;
               web = false;
               yaml = false;
-              yuck = false;
 
               # Plugins
               autopairs = false;
@@ -364,7 +341,6 @@
               shell = true;
               web = true;
               yaml = true;
-              yuck = true;
 
               # Plugins
               autopairs = true;
