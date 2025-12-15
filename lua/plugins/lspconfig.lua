@@ -3,6 +3,29 @@ local lazyAdd = utils.lazyAdd
 local isNixCats = utils.isNixCats
 
 local lsps = {
+  basedpyright = lazyAdd(vim.g.langs.python, nixCats("python")) and {
+    pattern = { "*.py", "*.pyi" },
+    settings = {
+      basedpyright = {
+        -- We will use our formatter for this
+        disableOrganizeImports = true,
+        analysis = {
+          diagnosticMode = "workspace",
+        },
+      },
+    },
+  },
+  bashls = lazyAdd(vim.g.langs.shell, nixCats("shell")) and {
+    pattern = { "*.bash", "*.sh" },
+    settings = {
+      bashls = {
+        shfmt = {
+          -- Follow redirection operators with a space
+          spaceRedirects = true,
+        },
+      },
+    },
+  },
   codebook = lazyAdd(vim.g.feat.dictionary, nixCats("dictionary")) and {
     pattern = {
       "*.c",
@@ -37,17 +60,6 @@ local lsps = {
         hover = {
           documentation = true,
           references = false,
-        },
-      },
-    },
-  },
-  bashls = lazyAdd(vim.g.langs.shell, nixCats("shell")) and {
-    pattern = { "*.bash", "*.sh" },
-    settings = {
-      bashls = {
-        shfmt = {
-          -- Follow redirection operators with a space
-          spaceRedirects = true,
         },
       },
     },

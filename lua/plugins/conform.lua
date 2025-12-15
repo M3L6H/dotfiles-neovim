@@ -101,6 +101,8 @@ local M = {
       markdown = lazyAdd(vim.g.langs.markdown, nixCats("markdown"))
         and { "mdsf", "mdformat", "doctoc" },
       nix = lazyAdd(vim.g.langs.nix, nixCats("nix")) and { "nixfmt" },
+      python = lazyAdd(vim.g.langs.python, nixCats("python"))
+        and { "ruff_fix", "ruff_format", "ruff_organize_imports" },
       rust = lazyAdd(vim.g.langs.rust, nixCats("rust")) and { "rustfmt" },
       sh = lazyAdd(vim.g.langs.shell, nixCats("shell")) and { "shfmt" },
       typescript = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },

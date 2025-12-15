@@ -88,6 +88,10 @@
               fzf
               ripgrep
             ];
+            python = with pkgs; [
+              basedpyright
+              ruff
+            ];
             rust = with pkgs; [
               cargo
               rust-analyzer
@@ -265,6 +269,7 @@
               lua = false;
               markdown = false;
               nix = false;
+              python = false;
               rust = false;
               shell = false;
               web = false;
@@ -337,6 +342,7 @@
               lua = true;
               markdown = true;
               nix = true;
+              python = true;
               rust = true;
               shell = true;
               web = true;
