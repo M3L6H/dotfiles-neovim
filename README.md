@@ -81,6 +81,7 @@ Each dependency below has been prefixed by the nixCats category it is associated
 | python:basedpyright | Language server for Python |
 | python:ruff | Linter and formatter for Python |
 | rust:rust-analyzer | Language server for Rust |
+| rust:rustfmt | Fromatter for Rust |
 | shell:bash-language-server | Language server for Shell scripts |
 | shell:shellcheck | Linter for Shell scripts |
 | shell:shfmt | Used to format Shell scripts |
