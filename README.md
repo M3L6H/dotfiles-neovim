@@ -45,6 +45,8 @@ Each option listed is a Boolean flag which toggles the corresponding language fe
 | vim.g.langs.lua |
 | vim.g.langs.markdown |
 | vim.g.langs.nix |
+| vim.g.langs.python |
+| vim.g.langs.rust |
 | vim.g.langs.shell |
 | vim.g.langs.web |
 | vim.g.langs.yaml |
@@ -72,10 +74,12 @@ Each dependency below has been prefixed by the nixCats category it is associated
 | markdown:marksman | Language server for Markdown |
 | markdown:mdformat | Used for formatting Markdown |
 | markdown:mdsf | Used for formatting code blocks in Markdown |
-| nix:nixd | Used for nix language support |
+| nix:nixd | Language server for nix |
 | nix:nixfmt-rfc-style | Used for nix formatting |
 | picker:fzf | Used in picker |
 | picker:ripgrep | Used in picker |
+| python:basedpyright | Language server for Python |
+| python:ruff | Linter and formatter for Python |
 | rust:rust-analyzer | Language server for Rust |
 | shell:bash-language-server | Language server for Shell scripts |
 | shell:shellcheck | Linter for Shell scripts |
