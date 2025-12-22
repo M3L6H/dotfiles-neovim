@@ -68,7 +68,7 @@ vim.g.terminalwindow = "2"
 
 -- Dashboard
 vim.g.dashboard = {
-  image = "/home/m3l6h/files/images/neovim/dashboard.jpg",
+  image = "~/files/images/neovim/dashboard.jpg",
   size = "60x32",
 }
 

@@ -109,6 +109,7 @@ local M = {
       enabled = lazyAdd(true, nixCats("dashboard")),
       sections = {
         {
+          ttl = 60 * 60,
           section = "terminal",
           cmd = "chafa "
             .. image
