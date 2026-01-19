@@ -94,6 +94,7 @@ local M = {
       css = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd", "stylelint" },
       gd = lazyAdd(vim.g.langs.godot, nixCats("godot")) and { "gdformat" },
       gdscript = lazyAdd(vim.g.langs.godot, nixCats("godot")) and { "gdformat" },
+      go = lazyAdd(vim.g.langs.go, nixCats("go")) and { "gofumpt" },
       html = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
       javascript = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
       javascriptreact = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },

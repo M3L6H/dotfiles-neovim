@@ -52,6 +52,11 @@
             dictionary = with pkgs; [
               codebook
             ];
+            go = with pkgs; [
+              go
+              gofumpt
+              gopls
+            ];
             godot = with pkgs; [
               gdtoolkit_4
             ];
@@ -82,7 +87,7 @@
             ];
             nix = with pkgs; [
               nixd
-              nixfmt-rfc-style
+              nixfmt
             ];
             picker = with pkgs; [
               fzf
@@ -101,6 +106,9 @@
               bash-language-server
               shellcheck
               shfmt
+            ];
+            treesitter = with pkgs; [
+              tree-sitter
             ];
             web = with pkgs; [
               emmet-language-server
@@ -265,6 +273,7 @@
               picker = false;
 
               # Languages/toolchains
+              go = false;
               godot = false;
               lua = false;
               markdown = false;
@@ -338,6 +347,7 @@
               picker = true;
 
               # Languages/toolchains
+              go = true;
               godot = true;
               lua = true;
               markdown = true;
@@ -416,7 +426,7 @@
             name = defaultPackageName;
             packages = [ defaultPackage ];
             inputsFrom = [ ];
-            shellHook = '''';
+            shellHook = "";
           };
         };
       }
