@@ -82,6 +82,10 @@ local lsps = {
       gdscript = {},
     },
   },
+  gopls = lazyAdd(vim.g.langs.go, nixCats("go")) and {
+    pattern = { "*.go", "*.gomod", "*.gowork", "*.gotmpl" },
+    settings = {},
+  },
   lua_ls = lazyAdd(vim.g.langs.lua, nixCats("lua")) and {
     pattern = { "*.lua" },
     settings = {

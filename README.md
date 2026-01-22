@@ -9,15 +9,17 @@ so that it is portable between Nix and non-Nix environments.
 ![Two-column Neovim dashboard made with folke Snacks.](images/dashboard.jpg)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
-  - [Options](#options)
-    - [Language options](#language-options)
-  - [Dependencies](#dependencies)
-  - [Language servers](#language-servers)
-  - [Development](#development)
-    - [Debugging](#debugging)
+- [Options](#options)
+  - [Language options](#language-options)
+- [Dependencies](#dependencies)
+- [Language servers](#language-servers)
+- [Development](#development)
+  - [Debugging](#debugging)
 - [Credits](#credits)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -42,6 +44,8 @@ Each option listed is a Boolean flag which toggles the corresponding language fe
 
 | Option |
 | - |
+| vim.g.langs.go |
+| vim.g.langs.godot |
 | vim.g.langs.lua |
 | vim.g.langs.markdown |
 | vim.g.langs.nix |
@@ -64,6 +68,9 @@ Each dependency below has been prefixed by the nixCats category it is associated
 | dashboard:chafa | Used for image in dashboard |
 | dashboard:gh | Used for GitHub issues in dashboard |
 | dashboard:image-magick | Used for image in dashboard |
+| go:gopls | Language server for Go |
+| godot:gdformat | Used for GodotScript formatting |
+| godot:gdscript | Language server for GodotScript |
 | image:ghostscript | Used to render pdf files |
 | image:imagemagick | Used to convert image formats for rendering |
 | image:mermaid-cli | Used to render mermaid diagrams |
@@ -75,7 +82,7 @@ Each dependency below has been prefixed by the nixCats category it is associated
 | markdown:mdformat | Used for formatting Markdown |
 | markdown:mdsf | Used for formatting code blocks in Markdown |
 | nix:nixd | Language server for nix |
-| nix:nixfmt-rfc-style | Used for nix formatting |
+| nix:nixfmt | Used for nix formatting |
 | picker:fzf | Used in picker |
 | picker:ripgrep | Used in picker |
 | python:basedpyright | Language server for Python |
