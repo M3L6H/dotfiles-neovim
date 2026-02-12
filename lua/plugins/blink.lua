@@ -23,26 +23,40 @@ end
 if lazyAdd(vim.g.feat.dictionary, nixCats("dictionary")) then
   table.insert(dependencies, "archie-judd/blink-cmp-words")
 
-  table.insert(default_sources, "dictionary")
-
-  table.insert(per_filetype.markdown, "thesaurus")
-
   providers["dictionary"] = {
     name = "blink-cmp-words",
     module = "blink-cmp-words.dictionary",
-    opts = {
-      dictionary_search_threshold = 3,
-      score_offset = -1,
-    },
   }
 
   providers["thesaurus"] = {
     name = "blink-cmp-words",
     module = "blink-cmp-words.thesaurus",
-    opts = {
-      score_offset = -1,
-    },
   }
+end
+
+function is_cursor_at_end_of_word()
+  local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local current_line = vim.api.nvim_get_current_line()
+
+  local char_under_cursor = string.sub(current_line, col + 1, col + 1)
+  if not char_under_cursor:find("%w") then return false end
+
+  local next_char = string.sub(current_line, col + 2, col + 2)
+  return next_char == "" or not next_char:find("%w")
+end
+
+local function open_provider(provider)
+  if not is_cursor_at_end_of_word() then
+    vim.opt.iskeyword:append({ "-" })
+    vim.api.nvim_feedkeys("e", "x", true)
+    vim.opt.iskeyword:remove({ "-" })
+  end
+  vim.api.nvim_feedkeys("a", "n", true)
+  require("blink-cmp").show({
+    providers = {
+      provider,
+    },
+  })
 end
 
 local M = {
@@ -50,11 +64,51 @@ local M = {
   enabled = lazyAdd(vim.g.plugins["blink-cmp"], nixCats("blink-cmp")),
   dependencies = dependencies,
   event = { "CmdlineEnter", "InsertEnter" },
+  keys = {
+    {
+      "<A-d>",
+      function() open_provider("dictionary") end,
+      mode = { "n" },
+      desc = "[D]ictionary",
+    },
+    {
+      "<A-t>",
+      function() open_provider("thesaurus") end,
+      mode = { "n" },
+      desc = "[T]hesaurus",
+    },
+  },
   opts = {
     keymap = {
       preset = "none",
 
       ["<C-space>"] = { "show", "hide_documentation", "show_documentation" },
+      ["<A-d>"] = {
+        function(cmp)
+          if cmp.is_active() then return false end
+          cmp.show({
+            providers = {
+              "dictionary",
+            },
+          })
+          return true
+        end,
+        "hide_documentation",
+        "show_documentation",
+      },
+      ["<A-t>"] = {
+        function(cmp)
+          if cmp.is_active() then return false end
+          cmp.show({
+            providers = {
+              "thesaurus",
+            },
+          })
+          return true
+        end,
+        "hide_documentation",
+        "show_documentation",
+      },
       ["<C-e>"] = {
         function(cmp)
           vim.g.cmp_selected = false
