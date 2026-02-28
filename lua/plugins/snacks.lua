@@ -62,7 +62,9 @@ local M = {
   lazy = false,
   keys = {
     { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart find files" },
+    { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command history" },
     -- Find
+    { "<leader>fb", function() Snacks.picker.buffers() end, desc = "[f]ind [b]uffers" },
     { "<leader>fc", function() Snacks.picker.commands() end, desc = "[f]ind [c]ommands" },
     { "<leader>ff", function() Snacks.picker.files() end, desc = "[f]ind [f]iles" },
     { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "[f]ind [d]iagnostics" },
