@@ -5,12 +5,6 @@ local M = {
   enabled = lazyAdd(vim.g.plugins.fastaction, nixCats("fastaction")),
   keys = {
     {
-      "<leader>a",
-      function() require("fastaction").code_action() end,
-      mode = { "n", "x" },
-      desc = "Code [A]ctions",
-    },
-    {
       "<leader>ca",
       function() require("fastaction").code_action() end,
       mode = { "n", "x" },

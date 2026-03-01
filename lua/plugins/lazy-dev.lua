@@ -5,6 +5,10 @@ local library = {
   { path = "${3rd}/luv/library", words = { "vim%.uv" } },
 }
 
+if lazyAdd(vim.g.feat.ai, nixCats("ai")) then
+  table.insert(library, { path = "codecompanion.nvim/types", files = { "ai.lua" } })
+end
+
 if lazyAdd(vim.g.plugins.snacks, nixCats("snacks")) then
   table.insert(library, { path = "snacks.nvim", words = { "Snacks" } })
 end

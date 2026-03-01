@@ -131,6 +131,11 @@
               ++ [
                 pkgs.vimPlugins."${extra_pkg_params.colorscheme}-nvim"
               ];
+            ai = with pkgs.vimPlugins; [
+              codecompanion-nvim
+              copilot-lua
+              plenary-nvim
+            ];
             autopairs = with pkgs.vimPlugins; [
               nvim-autopairs
             ];
@@ -267,6 +272,7 @@
               general = true;
 
               # Functionality
+              ai = false;
               dashboard = false;
               image = false;
               image-paste = false;
@@ -341,6 +347,7 @@
               general = true;
 
               # Functionality
+              ai = true;
               dashboard = true;
               image = true;
               image-paste = true;

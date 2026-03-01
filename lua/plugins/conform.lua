@@ -75,7 +75,7 @@ local M = {
   event = "BufWritePre",
   cmd = "ConformInfo",
   keys = {
-    { "<leader>cf", function() require("conform").format() end, desc = "Code format" },
+    { "<leader>cf", function() require("conform").format() end, desc = "[C]ode [F]ormat" },
   },
   -- @type conform.setupOpts
   opts = {
