@@ -132,6 +132,7 @@
                 pkgs.vimPlugins."${extra_pkg_params.colorscheme}-nvim"
               ];
             ai = with pkgs.vimPlugins; [
+              blink-copilot
               codecompanion-nvim
               copilot-lua
               plenary-nvim

@@ -1,6 +1,7 @@
 local lazyAdd = require("nixCatsUtils").lazyAdd
 
-local default_sources = { "lsp", "path", "snippets", "buffer" }
+local default_sources = { "lsp", "snippets", "path", "buffer" }
+local extended_sources = default_sources
 
 local providers = {}
 local dependencies = { "echasnovski/mini.icons" }
@@ -31,6 +32,18 @@ if lazyAdd(vim.g.feat.dictionary, nixCats("dictionary")) then
   providers["thesaurus"] = {
     name = "blink-cmp-words",
     module = "blink-cmp-words.thesaurus",
+  }
+end
+
+if lazyAdd(vim.g.feat.ai, nixCats("ai")) then
+  table.insert(dependencies, "fang2hou/blink-copilot")
+  table.insert(extended_sources, 1, "copilot")
+
+  providers["copilot"] = {
+    name = "copilot",
+    module = "blink-copilot",
+    score_offset = 120,
+    async = true,
   }
 end
 
@@ -82,7 +95,14 @@ local M = {
     keymap = {
       preset = "none",
 
-      ["<C-space>"] = { "show", "hide_documentation", "show_documentation" },
+      ["<C-space>"] = {
+        function(cmp)
+          cmp.show({
+            providers = extended_sources,
+          })
+          return true
+        end,
+      },
       ["<A-d>"] = {
         function(cmp)
           if cmp.is_active() then return false end
@@ -244,10 +264,12 @@ local M = {
             },
             kind_icon = {
               text = function(ctx)
+                if ctx.kind_icon ~= nil then return ctx.kind_icon end
                 local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
                 return kind_icon
               end,
               highlight = function(ctx)
+                if ctx.kind_icon_highlight ~= nil then return ctx.kind_icon_highlight end
                 local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
                 return hl
               end,

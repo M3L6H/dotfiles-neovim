@@ -53,6 +53,16 @@ local function get_project_root()
   return vim.fn.getcwd()
 end
 
+local blink_copilot = {
+  "fang2hou/blink-copilot",
+  enabled = lazyAdd(vim.g.feat.ai, nixCats("ai")),
+  optional = true,
+  event = "VeryLazy",
+  opts = {
+    kind_icon = " ",
+  },
+}
+
 local codecompanion = {
   "olimorris/codecompanion.nvim",
   enabled = lazyAdd(vim.g.feat.ai, nixCats("ai")),
@@ -148,10 +158,19 @@ local copilot = {
   "zbirenbaum/copilot.lua",
   enabled = lazyAdd(vim.g.feat.ai, nixCats("ai")),
   cmd = "Copilot",
-  opts = {},
+  event = "InsertEnter",
+  opts = {
+    panel = {
+      enabled = false,
+    },
+    suggestion = {
+      enabled = false,
+    },
+  },
 }
 
 return {
+  blink_copilot,
   codecompanion,
   copilot,
 }
