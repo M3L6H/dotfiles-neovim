@@ -1,7 +1,7 @@
 local lazyAdd = require("nixCatsUtils").lazyAdd
 
 local default_sources = { "lsp", "snippets", "path", "buffer" }
-local extended_sources = default_sources
+local extended_sources = { "lsp", "snippets", "path", "buffer" }
 
 local providers = {}
 local dependencies = { "echasnovski/mini.icons" }
