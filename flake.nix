@@ -70,6 +70,10 @@
             image-paste = with pkgs; [
               wl-clipboard
             ];
+            java = with pkgs; [
+              jdk21
+              jdt-language-server
+            ];
             lua = with pkgs; [
               lua-language-server
               stylua
@@ -177,6 +181,9 @@
             image-paste = with pkgs.vimPlugins; [
               img-clip-nvim
             ];
+            java = with pkgs.vimPlugins; [
+              nvim-jdtls
+            ];
             lazydev = with pkgs.vimPlugins; [
               lazydev-nvim
             ];
@@ -282,6 +289,7 @@
               # Languages/toolchains
               go = false;
               godot = false;
+              java = false;
               lua = false;
               markdown = false;
               nix = false;
@@ -357,6 +365,7 @@
               # Languages/toolchains
               go = true;
               godot = true;
+              java = true;
               lua = true;
               markdown = true;
               nix = true;

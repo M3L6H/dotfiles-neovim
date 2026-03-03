@@ -76,6 +76,7 @@ vim.g.dashboard = {
 vim.g.langs = {}
 vim.g.langs.go = true
 vim.g.langs.godot = true
+vim.g.langs.java = true
 vim.g.langs.lua = true
 vim.g.langs.markdown = true
 vim.g.langs.nix = false

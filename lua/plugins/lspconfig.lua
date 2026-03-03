@@ -86,6 +86,59 @@ local lsps = {
     pattern = { "*.go", "*.gomod", "*.gowork", "*.gotmpl" },
     settings = {},
   },
+  jdtls = lazyAdd(vim.g.langs.java, nixCats("java")) and {
+    pattern = { "*.java" },
+    settings = {
+      jdtls = {
+        settings = {
+          java = {
+            cleanup = {
+              actionsOnSave = {
+                "qualifyMembers",
+                "qualifyStaticMembers",
+                "addOverride",
+                "addFinalModifier",
+              },
+            },
+            codeGeneration = {
+              addFinalForNewDeclaration = "all",
+            },
+            completion = {
+              importOrder = {
+                "com",
+                "java",
+                "javax",
+                "lombok",
+                "org",
+              },
+            },
+            -- We will use dedicated Java formatter
+            format = {
+              enabled = false,
+            },
+            inlayhints = {
+              parameterNames = {
+                enabled = "literals",
+              },
+            },
+            saveActions = {
+              organizeImports = true,
+              cleanup = true,
+            },
+            signatureHelp = {
+              enabled = true,
+            },
+            sources = {
+              organizeImports = {
+                starThreshold = 999,
+                staticStarThreshold = 999,
+              },
+            },
+          },
+        },
+      },
+    },
+  },
   lua_ls = lazyAdd(vim.g.langs.lua, nixCats("lua")) and {
     pattern = { "*.lua" },
     settings = {
@@ -224,68 +277,55 @@ local M = {
     end
 
     vim.diagnostic.config(diagnostic_config)
+    local buf_read_pre_lsp = vim.api.nvim_create_augroup("buf-read-pre-lsp", { clear = true })
+    local lsp_attach = vim.api.nvim_create_augroup("lsp-attach", { clear = true })
 
-    -- We use Mason-lspconfig when we are not in the nixcats world
-    if isNixCats then
-      for lsp, config in pairs(lsps) do
-        if config then
-          -- Merge any manually specified capabilities
-          if nixCats("blink-cmp") then
-            config.capabilities =
-              require("blink.cmp").get_lsp_capabilities(config.capabilities or {})
-          end
-          vim.lsp.config(lsp, config)
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = lsp_attach,
+      pattern = "*",
+      callback = function(event)
+        local km = vim.keymap
+        km.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, { desc = "[R]e[n]ame" })
+        km.set(
+          "n",
+          "<leader>dd",
+          function() vim.diagnostic.open_float() end,
+          { desc = "[D]iagnostics [d]isplay" }
+        )
+
+        -- Get client
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+        if client and client.server_capabilities.inlayHintProvider then
+          vim.g.inlay_hints_visible = true
+          vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
         end
-      end
-    end
+      end,
+      desc = "Additional LSP init after attach",
+    })
 
-    -- We use Mason-lspconfig when we are not in the nixcats world
-    if isNixCats then
-      local buf_read_pre_lsp = vim.api.nvim_create_augroup("buf-read-pre-lsp", { clear = true })
-      local lsp_attach = vim.api.nvim_create_augroup("lsp-attach", { clear = true })
-
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = lsp_attach,
-        pattern = "*",
-        callback = function(event)
-          local km = vim.keymap
-          km.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, { desc = "[R]e[n]ame" })
-          km.set(
-            "n",
-            "<leader>dd",
-            function() vim.diagnostic.open_float() end,
-            { desc = "[D]iagnostics [d]isplay" }
-          )
-
-          -- Get client
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-          if client and client.server_capabilities.inlayHintProvider then
-            vim.g.inlay_hints_visible = true
-            vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
-          end
-        end,
-        desc = "Additional LSP init after attach",
-      })
-
-      for lsp, config in pairs(lsps) do
-        if config then
-          vim.api.nvim_create_autocmd("BufReadPre", {
-            group = buf_read_pre_lsp,
-            pattern = config.pattern,
-            callback = function() vim.lsp.enable(lsp) end,
-            once = true,
-            desc = "Enable lsp in BufReadPre",
-          })
-
-          if config.on_attach then
-            vim.api.nvim_create_autocmd("LspAttach", {
-              group = lsp_attach,
-              pattern = config.pattern,
-              callback = config.on_attach,
-              desc = "Setup LSP-specific behavior on attach",
+    for lsp, config in pairs(lsps) do
+      if config then
+        vim.api.nvim_create_autocmd("BufReadPre", {
+          group = buf_read_pre_lsp,
+          pattern = config.pattern,
+          callback = function()
+            vim.lsp.config(lsp, {
+              settings = config.settings,
             })
-          end
+            vim.lsp.enable(lsp)
+          end,
+          once = true,
+          desc = "Enable lsp in BufReadPre",
+        })
+
+        if config.on_attach then
+          vim.api.nvim_create_autocmd("LspAttach", {
+            group = lsp_attach,
+            pattern = config.pattern,
+            callback = config.on_attach,
+            desc = "Setup LSP-specific behavior on attach",
+          })
         end
       end
     end
