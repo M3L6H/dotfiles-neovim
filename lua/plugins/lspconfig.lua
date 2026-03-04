@@ -86,59 +86,72 @@ local lsps = {
     pattern = { "*.go", "*.gomod", "*.gowork", "*.gotmpl" },
     settings = {},
   },
-  jdtls = lazyAdd(vim.g.langs.java, nixCats("java")) and {
-    pattern = { "*.java" },
-    settings = {
-      jdtls = {
-        settings = {
-          java = {
-            cleanup = {
-              actionsOnSave = {
-                "qualifyMembers",
-                "qualifyStaticMembers",
-                "addOverride",
-                "addFinalModifier",
-              },
-            },
-            codeGeneration = {
-              addFinalForNewDeclaration = "all",
-            },
-            completion = {
-              importOrder = {
-                "com",
-                "java",
-                "javax",
-                "lombok",
-                "org",
-              },
-            },
-            -- We will use dedicated Java formatter
-            format = {
-              enabled = false,
-            },
-            inlayhints = {
-              parameterNames = {
-                enabled = "literals",
-              },
-            },
-            saveActions = {
-              organizeImports = true,
-              cleanup = true,
-            },
-            signatureHelp = {
-              enabled = true,
-            },
-            sources = {
-              organizeImports = {
-                starThreshold = 999,
-                staticStarThreshold = 999,
+  jdtls = lazyAdd(vim.g.langs.java, nixCats("java"))
+    and {
+      pattern = { "*.java" },
+      settings = function()
+        local formatFile = vim.fn.expand("~/.config/java/eclipse-formatter.xml")
+        local formatUrl = vim.fn.filereadable(formatFile) == 1 and vim.uri_from_fname(formatFile)
+          or "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
+        local formatOption = {
+          url = formatUrl,
+        }
+        local formatProfile = os.getenv("JDTLS_FORMAT_PROFILE")
+
+        if formatProfile then formatOption.profile = formatProfile end
+
+        return {
+          jdtls = {
+            settings = {
+              java = {
+                cleanup = {
+                  actionsOnSave = {
+                    "qualifyMembers",
+                    "qualifyStaticMembers",
+                    "addOverride",
+                    "addFinalModifier",
+                  },
+                },
+                codeGeneration = {
+                  addFinalForNewDeclaration = "all",
+                },
+                completion = {
+                  importOrder = {
+                    "com",
+                    "java",
+                    "javax",
+                    "lombok",
+                    "org",
+                  },
+                },
+                format = {
+                  enabled = true,
+                  settings = formatOption,
+                },
+                inlayhints = {
+                  parameterNames = {
+                    enabled = "literals",
+                  },
+                },
+                saveActions = {
+                  organizeImports = true,
+                  cleanup = true,
+                },
+                signatureHelp = {
+                  enabled = true,
+                },
+                sources = {
+                  organizeImports = {
+                    starThreshold = 999,
+                    staticStarThreshold = 999,
+                  },
+                },
               },
             },
           },
-        },
-      },
+        }
+      end,
     },
-  },
   lua_ls = lazyAdd(vim.g.langs.lua, nixCats("lua")) and {
     pattern = { "*.lua" },
     settings = {
@@ -310,8 +323,10 @@ local M = {
           group = buf_read_pre_lsp,
           pattern = config.pattern,
           callback = function()
+            local settings = config.settings
+            if type(config.settings) == "function" then settings = config.settings() end
             vim.lsp.config(lsp, {
-              settings = config.settings,
+              settings = settings,
             })
             vim.lsp.enable(lsp)
           end,

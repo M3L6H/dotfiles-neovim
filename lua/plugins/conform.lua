@@ -79,7 +79,7 @@ local M = {
   },
   -- @type conform.setupOpts
   opts = {
-    notify_no_formatters = true,
+    notify_no_formatters = false,
     formatters = {
       doctoc = {
         prepend_args = { "--title", "**Table of Contents**" },
@@ -96,6 +96,7 @@ local M = {
       gdscript = lazyAdd(vim.g.langs.godot, nixCats("godot")) and { "gdformat" },
       go = lazyAdd(vim.g.langs.go, nixCats("go")) and { "gofumpt" },
       html = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
+      java = {},
       javascript = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
       javascriptreact = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
       lua = lazyAdd(vim.g.langs.lua, nixCats("lua")) and { "stylua" },
