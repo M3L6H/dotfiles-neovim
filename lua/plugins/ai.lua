@@ -1,6 +1,5 @@
 local lazyAdd = require("nixCatsUtils").lazyAdd
 
----
 --- Attempts to find the project root using LSP, root markers, or cwd.
 --- @return string
 local function get_project_root()
@@ -52,16 +51,6 @@ local function get_project_root()
   -- Fallback to cwd
   return vim.fn.getcwd()
 end
-
-local blink_copilot = {
-  "fang2hou/blink-copilot",
-  enabled = lazyAdd(vim.g.feat.ai, nixCats("ai")),
-  optional = true,
-  event = "VeryLazy",
-  opts = {
-    kind_icon = " ",
-  },
-}
 
 local codecompanion = {
   "olimorris/codecompanion.nvim",
@@ -170,7 +159,6 @@ local copilot = {
 }
 
 return {
-  blink_copilot,
   codecompanion,
   copilot,
 }

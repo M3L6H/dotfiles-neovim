@@ -90,45 +90,21 @@ local M = {
       mode = { "n" },
       desc = "[T]hesaurus",
     },
+    {
+      "<C-space>",
+      function()
+        require("blink-cmp").show({
+          providers = extended_sources,
+        })
+      end,
+      mode = { "i" },
+      desc = "Show full completion",
+    },
   },
   opts = {
     keymap = {
       preset = "none",
 
-      ["<C-space>"] = {
-        function(cmp)
-          cmp.show({
-            providers = extended_sources,
-          })
-          return true
-        end,
-      },
-      ["<A-d>"] = {
-        function(cmp)
-          if cmp.is_active() then return false end
-          cmp.show({
-            providers = {
-              "dictionary",
-            },
-          })
-          return true
-        end,
-        "hide_documentation",
-        "show_documentation",
-      },
-      ["<A-t>"] = {
-        function(cmp)
-          if cmp.is_active() then return false end
-          cmp.show({
-            providers = {
-              "thesaurus",
-            },
-          })
-          return true
-        end,
-        "hide_documentation",
-        "show_documentation",
-      },
       ["<C-e>"] = {
         function(cmp)
           vim.g.cmp_selected = false
