@@ -108,6 +108,7 @@ vim.g.plugins.multicursor = true
 vim.g.plugins.noice = false
 vim.g.plugins.oil = true
 vim.g.plugins["render-markdown"] = true
+vim.g.plugins.screensaver = true
 vim.g.plugins.smartcolumn = true
 vim.g.plugins["smear-cursor"] = true
 vim.g.plugins.snacks = true

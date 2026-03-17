@@ -221,6 +221,9 @@
             render-markdown = with pkgs.vimPlugins; [
               render-markdown-nvim
             ];
+            screensaver = with pkgs.vimPlugins; [
+              screensaver-nvim
+            ];
             smartcolumn = with pkgs.vimPlugins; [
               smartcolumn-nvim
             ];
@@ -320,6 +323,7 @@
               noice = false;
               oil = false;
               render-markdown = false;
+              screensaver = false;
               smartcolumn = false;
               smear-cursor = false;
               snacks = false;
@@ -396,6 +400,7 @@
               noice = false;
               oil = true;
               render-markdown = true;
+              screensaver = true;
               smartcolumn = true;
               smear-cursor = true;
               snacks = true;
