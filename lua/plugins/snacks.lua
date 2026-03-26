@@ -171,6 +171,9 @@ local M = {
         only_scope = true,
         only_current = true,
       },
+      animate = {
+        enabled = not vim.env.SSH_CLIENT or vim.env.SSH_CONNECTION,
+      },
       scope = {
         only_current = true,
       },
@@ -208,7 +211,7 @@ local M = {
       },
     },
     quickfile = { enabled = true },
-    scroll = { enabled = true },
+    scroll = { enabled = not vim.env.SSH_CLIENT or vim.env.SSH_CONNECTION },
     statuscolumn = {
       enabled = true,
       right = { "git", "fold" },
