@@ -2,7 +2,7 @@ local lazyAdd = require("nixCatsUtils").lazyAdd
 
 local M = {
   "sphamba/smear-cursor.nvim",
-  enabled = (not vim.env.SSH_CLIENT or vim.env.SSH_CONNECTION)
+  enabled = (not (vim.env.SSH_CLIENT or vim.env.SSH_CONNECTION))
     and lazyAdd(vim.g.plugins["smear-cursor"], nixCats("smear-cursor")),
   event = "BufReadPost",
   opts = {
