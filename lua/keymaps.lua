@@ -11,8 +11,10 @@ km.set("n", "<leader>X", "<CMD>only<CR>", { desc = "Close all other splits" })
 local function switch_window()
   if vim.fn.exists("$TMUX") and vim.g.terminalwindow ~= nil then
     -- Switch to terminal window if in tmux session
-    os.execute("tmux select-window -t " .. vim.g.terminalwindow)
-    return true
+    obj = vim
+      .system({ "tmux", "select-window", "-t", vim.g.terminalwindow }, { text = true })
+      :wait()
+    return obj.code == 0
   end
   return false
 end
