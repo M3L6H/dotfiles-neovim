@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: initial-checkout
+        uses: actions/checkout@v4
+ 
       - name: pr-info
         id: pr-info
         env:
@@ -25,18 +28,13 @@ jobs:
             PR_NUMBER="${{ github.event.inputs.pr_number }}"
             PR_DATA=$(gh pr view $PR_NUMBER --json headRefOid)
             COMMIT_SHA=$(echo "$PR_DATA" | jq -r '.headRefOid')
+            git checkout "$COMMIT_SHA"
           else
             COMMIT_SHA="${{ github.event.pull_request.head.sha }}"
-            echo "COMMIT_SHA=$COMMIT_SHA" >> $GITHUB_ENV
             echo "Targeting PR triggered automatically."
           fi
+          echo "COMMIT_SHA=$COMMIT_SHA" >> $GITHUB_ENV
           echo "Targeting commit: $COMMIT_SHA"
-
-      - name: checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ env.COMMIT_SHA }}
       
       - name: nix
         uses: cachix/install-nix-action@v22
