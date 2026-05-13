@@ -64,10 +64,11 @@ jobs:
           ./neovim_app/bin/nvim --headless +checkhealth +"set buftype=" +"w! checkhealth_output.txt" +"qa!"
 
       - name: upload-artifact
-        uses: actions/upload-artifact@v4
+        id: upload-artifact
+        uses: actions/upload-artifact@v7
         with:
-          name: checkhealth-output
           path: checkhealth_output.txt
+          archive: false
           retention-days: 7
 
       - name: prepare-comment
@@ -75,7 +76,7 @@ jobs:
           {
             echo '### Neovim `:checkhealth` Output'
             echo ""
-            echo 'Full output available in artifacts: [checkhealth_output.txt](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}#artifacts)'
+            echo 'Full output available in artifacts: <a href="${{ steps.upload-artifact.outputs.artifact-url }})" target="_blank">checkhealth_output.txt</a>'
             echo ""
             echo '**First 200 lines:**'
             echo ""
