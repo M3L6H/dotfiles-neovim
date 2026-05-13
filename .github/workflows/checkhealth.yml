@@ -23,15 +23,8 @@ jobs:
         run: |-
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             PR_NUMBER="${{ github.event.inputs.pr_number }}"
-            PR_DATA=$(gh pr view $PR_NUMBER --json headRefOid,baseRefName,headRepositoryUrl)
+            PR_DATA=$(gh pr view $PR_NUMBER --json headRefOid)
             COMMIT_SHA=$(echo "$PR_DATA" | jq -r '.headRefOid')
-            REPO_URL=$(echo "$PR_DATA" | jq -r '.headRepositoryUrl')
-            echo "REPO_URL=$REPO_URL" >> $GITHUB_ENV
-            echo "COMMIT_SHA=$COMMIT_SHA" >> $GITHUB_ENV
-
-            git remote add pr_target $REPO_URL
-            git fetch pr_target
-            git reset --hard $COMMIT_SHA
           else
             COMMIT_SHA="${{ github.event.pull_request.head.sha }}"
             echo "COMMIT_SHA=$COMMIT_SHA" >> $GITHUB_ENV
