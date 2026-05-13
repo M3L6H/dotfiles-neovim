@@ -23,7 +23,7 @@ jobs:
         uses: actions/create-github-app-token@v3
         id: generate-token
         with:
-          app-id: ${{ secrets.APP_ID }}
+          client-id: ${{ secrets.CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
   
       - name: initial-checkout
@@ -61,7 +61,7 @@ jobs:
       - name: :checkhealth
         id: checkhealth
         run: |-
-          ./neovim_app/bin/nvim --headless +checkhealth +write! /dev/stdout +quitall > checkhealth_output.txt || true
+          ./neovim_app/bin/nvim --headless +checkhealth +"set buftype=" +"w! checkhealth_output.txt" +qa
           echo "CHECKHEALTH_OUTPUT<<EOF" >> $GITHUB_ENV
           cat checkhealth_output.txt >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
@@ -69,7 +69,7 @@ jobs:
       - name: comment
         uses: peter-evans/commit-comment@v4.0.0
         with:
-          github-token: ${{ steps.generate-token.outputs.token }}
+          token: ${{ steps.generate-token.outputs.token }}
           repository: ${{ github.repository }}
           sha: ${{ env.COMMIT_SHA }}
           body: |-
