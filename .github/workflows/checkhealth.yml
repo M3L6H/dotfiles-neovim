@@ -61,7 +61,7 @@ jobs:
       - name: :checkhealth
         id: checkhealth
         run: |-
-          ./neovim_app/bin/nvim --headless +checkhealth +"set buftype=" +"w! checkhealth_output.txt" +qa
+          ./neovim_app/bin/nvim --headless +checkhealth +"set buftype=" +"w! checkhealth_output.txt" +"qa!"
           echo "CHECKHEALTH_OUTPUT<<EOF" >> $GITHUB_ENV
           cat checkhealth_output.txt >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
