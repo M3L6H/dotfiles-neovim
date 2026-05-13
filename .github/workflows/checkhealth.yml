@@ -14,7 +14,10 @@ on:
 jobs:
   checkhealth:
     runs-on: ubuntu-latest
-
+    permissions:
+      pull-requests: write
+      issues: write
+      contents: read
     steps:
       - name: initial-checkout
         uses: actions/checkout@v6
