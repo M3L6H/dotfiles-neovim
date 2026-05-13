@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: pr-info
         id: pr-info
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |-
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             PR_NUMBER="${{ github.event.inputs.pr_number }}"
