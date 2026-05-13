@@ -1,0 +1,41 @@
+name: checkhealth
+
+on:
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  checkhealth:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      
+      - name: nix
+        uses: cachix/install-nix-action@v22
+        with:
+          install_url: https://releases.nixos.org/nix/nix-2.15.1/install
+
+      - name: build
+        run: |-
+          nix build .#neovim -o neovim_app
+          echo "Neovim flake built successfully."
+
+      - name: :checkhealth
+        id: checkhealth
+        run: |-
+          ./neovim_app/bin/nvim --headless +"checkhealth" +qa > checkhealth_output.txt || true
+          echo "CHECKHEALTH_OUTPUT<<EOF" >> $GITHUB_ENV
+          cat checkhealth_output.txt >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: comment
+        uses: peter-evans/commit-comment@v2
+        with:
+          body: |-
+            ### Neovim :checkhealth Output
+            ```
+            ${{ env.CHECKHEALTH_OUTPUT }}
+            ```

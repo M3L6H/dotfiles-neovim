@@ -3,7 +3,7 @@ name: update-flake-lock
 on:
   workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: '0 0 * * 1' # Run weekly
+    - cron: '3 6 * * 1' # Run weekly
 
 permissions:
   contents: write
