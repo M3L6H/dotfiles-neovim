@@ -7,6 +7,24 @@ for dim in string.gmatch(size, "%d+") do
   table.insert(dims, dim)
 end
 
+local exclude = {
+  "**/.DS_Store/*",
+  "**/.cargo/*",
+  "**/.git/*",
+  "**/.gradle/*",
+  "**/.next/*",
+  "**/.idea/*",
+  "**/.pytest_cache/*",
+  "**/.venv/*",
+  "**/.vscode/*",
+  "**/__pycache__/*",
+  "**/build/*",
+  "**/dist/*",
+  "**/node_modules/*",
+  "**/out/*",
+  "**/vendor/*",
+ }
+
 ---@class (exact) MyBlock
 ---@field min integer
 ---@field max integer
@@ -193,11 +211,13 @@ local M = {
       },
       actions = nixCats("trouble") and require("trouble.sources.snacks").actions,
       sources = {
-        explorer = { hidden = true, ignored = true, exclude = { ".git" } },
-        files = { hidden = true, ignored = true, exclude = { ".git" } },
-        grep = { hidden = true, ignored = true, exclude = { ".git" } },
-        grep_buffers = { hidden = true, ignored = true, exclude = { ".git" } },
-        grep_word = { hidden = true, ignored = true, exclude = { ".git" } },
+        explorer = { hidden = true, ignored = true, exclude = exclude },
+        files = { hidden = true, ignored = true, exclude = exclude },
+        grep = { hidden = true, ignored = true, exclude = exclude },
+        grep_buffers = { hidden = true, ignored = true, exclude = exclude },
+        grep_word = { hidden = true, ignored = true, exclude = exclude },
+        recent = { hidden = true, ignored = true, exclude = exclude },
+        smart = { hidden = true, ignored = true, exclude = exclude },
       },
       win = {
         input = {
