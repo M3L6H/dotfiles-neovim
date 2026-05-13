@@ -66,17 +66,56 @@ jobs:
       - name: prepare-comment
         run: |-
           {
-            echo "### Neovim `:checkhealth` Output"
+            echo '### Neovim `:checkhealth` Output'
             echo ""
             echo '```'
-            cat checkhealth_output.txt
+            awk 'NR>=0 && NR<500' checkhealth_output.txt
             echo '```'
-          } > comment_body.md
+          } > comment_body_1.md
+          {
+            echo '```'
+            awk 'NR>=500 && NR<1000' checkhealth_output.txt
+            echo '```'
+          } > comment_body_2.md
+          {
+            echo '```'
+            awk 'NR>=1000 && NR<1500' checkhealth_output.txt
+            echo '```'
+          } > comment_body_3.md
+          {
+            echo '```'
+            awk 'NR>=1500 && NR<2000' checkhealth_output.txt
+            echo '```'
+          } > comment_body_4.md
 
-      - name: comment
+      - name: comment-1
         uses: peter-evans/commit-comment@v4.0.0
         with:
           token: ${{ steps.generate-token.outputs.token }}
           repository: ${{ github.repository }}
           sha: ${{ steps.pr-info.outputs.COMMIT_SHA }}
-          body-path: comment_body.md
+          body-path: comment_body_1.md
+
+      - name: comment-2
+        uses: peter-evans/commit-comment@v4.0.0
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          repository: ${{ github.repository }}
+          sha: ${{ steps.pr-info.outputs.COMMIT_SHA }}
+          body-path: comment_body_2.md
+
+      - name: comment-3
+        uses: peter-evans/commit-comment@v4.0.0
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          repository: ${{ github.repository }}
+          sha: ${{ steps.pr-info.outputs.COMMIT_SHA }}
+          body-path: comment_body_3.md
+
+      - name: comment-4
+        uses: peter-evans/commit-comment@v4.0.0
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          repository: ${{ github.repository }}
+          sha: ${{ steps.pr-info.outputs.COMMIT_SHA }}
+          body-path: comment_body_4.md
