@@ -63,59 +63,31 @@ jobs:
         run: |-
           ./neovim_app/bin/nvim --headless +checkhealth +"set buftype=" +"w! checkhealth_output.txt" +"qa!"
 
+      - name: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkhealth-output
+          path: checkhealth_output.txt
+          retention-days: 7
+
       - name: prepare-comment
         run: |-
           {
             echo '### Neovim `:checkhealth` Output'
             echo ""
+            echo 'Full output available in artifacts: [checkhealth_output.txt](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}#artifacts)'
+            echo ""
+            echo '**First 200 lines:**'
+            echo ""
             echo '```'
-            awk 'NR>=0 && NR<500' checkhealth_output.txt
+            head -n 200 checkhealth_output.txt
             echo '```'
-          } > comment_body_1.md
-          {
-            echo '```'
-            awk 'NR>=500 && NR<1000' checkhealth_output.txt
-            echo '```'
-          } > comment_body_2.md
-          {
-            echo '```'
-            awk 'NR>=1000 && NR<1500' checkhealth_output.txt
-            echo '```'
-          } > comment_body_3.md
-          {
-            echo '```'
-            awk 'NR>=1500 && NR<2000' checkhealth_output.txt
-            echo '```'
-          } > comment_body_4.md
+          } > comment_body.md
 
-      - name: comment-1
+      - name: comment
         uses: peter-evans/commit-comment@v4.0.0
         with:
           token: ${{ steps.generate-token.outputs.token }}
           repository: ${{ github.repository }}
           sha: ${{ steps.pr-info.outputs.COMMIT_SHA }}
-          body-path: comment_body_1.md
-
-      - name: comment-2
-        uses: peter-evans/commit-comment@v4.0.0
-        with:
-          token: ${{ steps.generate-token.outputs.token }}
-          repository: ${{ github.repository }}
-          sha: ${{ steps.pr-info.outputs.COMMIT_SHA }}
-          body-path: comment_body_2.md
-
-      - name: comment-3
-        uses: peter-evans/commit-comment@v4.0.0
-        with:
-          token: ${{ steps.generate-token.outputs.token }}
-          repository: ${{ github.repository }}
-          sha: ${{ steps.pr-info.outputs.COMMIT_SHA }}
-          body-path: comment_body_3.md
-
-      - name: comment-4
-        uses: peter-evans/commit-comment@v4.0.0
-        with:
-          token: ${{ steps.generate-token.outputs.token }}
-          repository: ${{ github.repository }}
-          sha: ${{ steps.pr-info.outputs.COMMIT_SHA }}
-          body-path: comment_body_4.md
+          body-path: comment_body.md
