@@ -19,6 +19,13 @@ jobs:
       issues: write
       contents: read
     steps:
+      - name: generate-token
+        uses: actions/create-github-app-token@v3
+        id: generate-token
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+  
       - name: initial-checkout
         uses: actions/checkout@v6
         with:
@@ -54,14 +61,15 @@ jobs:
       - name: :checkhealth
         id: checkhealth
         run: |-
-          ./neovim_app/bin/nvim --headless +"checkhealth" +qa > checkhealth_output.txt || true
+          ./neovim_app/bin/nvim --headless +checkhealth +write! /dev/stdout +quitall > checkhealth_output.txt || true
           echo "CHECKHEALTH_OUTPUT<<EOF" >> $GITHUB_ENV
           cat checkhealth_output.txt >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
       - name: comment
-        uses: peter-evans/commit-comment@v2
+        uses: peter-evans/commit-comment@v4.0.0
         with:
+          github-token: ${{ steps.generate-token.outputs.token }}
           repository: ${{ github.repository }}
           sha: ${{ env.COMMIT_SHA }}
           body: |-
