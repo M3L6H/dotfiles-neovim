@@ -62,9 +62,16 @@ jobs:
         id: checkhealth
         run: |-
           ./neovim_app/bin/nvim --headless +checkhealth +"set buftype=" +"w! checkhealth_output.txt" +"qa!"
-          echo "CHECKHEALTH_OUTPUT<<EOF" >> $GITHUB_OUTPUT
-          cat checkhealth_output.txt >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: prepare-comment
+        run: |-
+          {
+            echo "### Neovim `:checkhealth` Output"
+            echo ""
+            echo '```'
+            cat checkhealth_output.txt
+            echo '```'
+          } > comment_body.md
 
       - name: comment
         uses: peter-evans/commit-comment@v4.0.0
@@ -72,8 +79,4 @@ jobs:
           token: ${{ steps.generate-token.outputs.token }}
           repository: ${{ github.repository }}
           sha: ${{ steps.pr-info.outputs.COMMIT_SHA }}
-          body: |-
-            ### Neovim :checkhealth Output
-            ```
-            ${{ steps.checkhealth.outputs.CHECKHEALTH_OUTPUT }}
-            ```
+          body-path: comment_body.md
