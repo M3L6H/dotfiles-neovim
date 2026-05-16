@@ -22,12 +22,16 @@ local M = {
         lookahead = true,
 
         keymaps = {
-          ["ac"] = { query = "@class.outer", desc = "Select outer class" },
-          ["ic"] = { query = "@class.inner", desc = "Select inner class" },
-          ["af"] = { query = "@function.outer", desc = "Select outer function" },
-          ["if"] = { query = "@function.inner", desc = "Select inner function" },
-          ["am"] = { query = "@method.outer", desc = "Select outer method" },
-          ["im"] = { query = "@method.inner", desc = "Select inner method" },
+          ["aB"] = { query = "@block.outer", desc = "Select [a]round [B]lock" },
+          ["iB"] = { query = "@block.inner", desc = "Select [i]n [B]lock" },
+          ["aC"] = { query = "@call.outer", desc = "Select [a]round [C]all" },
+          ["iC"] = { query = "@class.inner", desc = "Select [i]n [C]all" },
+          ["ac"] = { query = "@class.outer", desc = "Select [a]round [c]lass" },
+          ["ic"] = { query = "@class.inner", desc = "Select [i]n [c]lass" },
+          ["af"] = { query = "@function.outer", desc = "Select [a]round [f]unction" },
+          ["if"] = { query = "@function.inner", desc = "Select [i]n [f]unction" },
+          ["am"] = { query = "@method.outer", desc = "Select [a]round [m]ethod" },
+          ["im"] = { query = "@method.inner", desc = "Select [i]n [m]ethod" },
         },
       },
       move = {
