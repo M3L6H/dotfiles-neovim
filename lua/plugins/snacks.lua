@@ -10,6 +10,7 @@ end
 local exclude = {
   "**/.DS_Store/*",
   "**/.cargo/*",
+  "**/.direnv/*",
   "**/.git/*",
   "**/.gradle/*",
   "**/.next/*",
@@ -19,11 +20,15 @@ local exclude = {
   "**/.vscode/*",
   "**/__pycache__/*",
   "**/build/*",
+  "**/coverage/*",
   "**/dist/*",
   "**/node_modules/*",
   "**/out/*",
   "**/vendor/*",
- }
+
+  "**/*.lock",
+  "**/*lock.json",
+}
 
 ---@class (exact) MyBlock
 ---@field min integer
