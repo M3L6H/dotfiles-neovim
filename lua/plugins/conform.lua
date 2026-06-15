@@ -43,16 +43,6 @@ local function mdsf(bufner)
       table.insert(languages, mk_karr("yaml", "yamlfmt"))
     end
 
-    if lazyAdd(vim.g.langs.web, nixCats("web")) then
-      -- prettierd is only supported in the mdsf 0.10.7
-      -- table.insert(languages, mk_karr("css", "prettierd"))
-      -- table.insert(languages, mk_karr("html", "prettierd"))
-      -- table.insert(languages, mk_karr("javascript", "prettierd"))
-      -- table.insert(languages, mk_karr("javascriptreact", "prettierd"))
-      -- table.insert(languages, mk_karr("typescript", "prettierd"))
-      -- table.insert(languages, mk_karr("typescriptreact", "prettierd"))
-    end
-
     for i, lang in ipairs(languages) do
       table.insert(json, string.format("%s%s", lang, i < #languages and "," or ""))
     end
@@ -88,6 +78,9 @@ local M = {
       mdformat = {
         prepend_args = { "--no-codeformatters" },
       },
+      tombi = {
+        prepend_args = { "format" },
+      },
     },
     -- @type conform.FiletypeFormatter
     formatters_by_ft = {
@@ -107,6 +100,7 @@ local M = {
         and { "ruff_fix", "ruff_format", "ruff_organize_imports" },
       rust = lazyAdd(vim.g.langs.rust, nixCats("rust")) and { "rustfmt" },
       sh = lazyAdd(vim.g.langs.shell, nixCats("shell")) and { "shfmt" },
+      toml = lazyAdd(vim.g.langs.toml, nixCats("toml")) and { "tombi" },
       typescript = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
       typescriptreact = lazyAdd(vim.g.langs.web, nixCats("web")) and { "prettierd" },
       yaml = lazyAdd(vim.g.langs.yaml, nixCats("yaml")) and { "yamlfmt" },

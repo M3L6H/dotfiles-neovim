@@ -1,6 +1,5 @@
 local utils = require("nixCatsUtils")
 local lazyAdd = utils.lazyAdd
-local isNixCats = utils.isNixCats
 
 local lsps = {
   basedpyright = lazyAdd(vim.g.langs.python, nixCats("python")) and {
@@ -228,6 +227,10 @@ local lsps = {
         },
       },
     },
+  },
+  tombi = lazyAdd(vim.g.langs.toml, nixCats("toml")) and {
+    pattern = { "*.toml" },
+    settings = {},
   },
   ts_ls = lazyAdd(vim.g.langs.web, nixCats("web")) and {
     pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },

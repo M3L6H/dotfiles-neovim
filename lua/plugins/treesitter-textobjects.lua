@@ -24,8 +24,6 @@ local M = {
         keymaps = {
           ["aB"] = { query = "@block.outer", desc = "Select [a]round [B]lock" },
           ["iB"] = { query = "@block.inner", desc = "Select [i]n [B]lock" },
-          ["aC"] = { query = "@call.outer", desc = "Select [a]round [C]all" },
-          ["iC"] = { query = "@class.inner", desc = "Select [i]n [C]all" },
           ["ac"] = { query = "@class.outer", desc = "Select [a]round [c]lass" },
           ["ic"] = { query = "@class.inner", desc = "Select [i]n [c]lass" },
           ["af"] = { query = "@function.outer", desc = "Select [a]round [f]unction" },

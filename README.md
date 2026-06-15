@@ -53,6 +53,7 @@ Each option listed is a Boolean flag which toggles the corresponding language fe
 | vim.g.langs.python |
 | vim.g.langs.rust |
 | vim.g.langs.shell |
+| vim.g.langs.toml |
 | vim.g.langs.web |
 | vim.g.langs.yaml |
 
