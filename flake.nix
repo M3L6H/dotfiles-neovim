@@ -114,6 +114,9 @@
             treesitter = with pkgs; [
               tree-sitter
             ];
+            toml = with pkgs; [
+              tombi
+            ];
             web = with pkgs; [
               emmet-language-server
               prettierd
@@ -299,6 +302,7 @@
               python = false;
               rust = false;
               shell = false;
+              toml = false;
               web = false;
               yaml = false;
 
@@ -376,6 +380,7 @@
               python = true;
               rust = true;
               shell = true;
+              toml = true;
               web = true;
               yaml = true;
 

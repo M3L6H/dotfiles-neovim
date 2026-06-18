@@ -83,6 +83,7 @@ vim.g.langs.nix = false
 vim.g.langs.python = true
 vim.g.langs.rust = true
 vim.g.langs.shell = true
+vim.g.langs.toml = true
 vim.g.langs.web = true
 vim.g.langs.yaml = true
 
