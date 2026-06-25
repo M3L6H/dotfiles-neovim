@@ -164,6 +164,13 @@ local lsps = {
           enable = true,
           arrayIndex = "Disable",
           paramName = "Literal",
+          setType = true,
+        },
+        workspace = {
+          ignoreSubmodules = false,
+          library = {
+            "${workspaceFolder}/lib",
+          },
         },
       },
     },
