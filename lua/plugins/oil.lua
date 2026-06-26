@@ -6,7 +6,7 @@ local M = {
   dependencies = { { "echasnovski/mini.icons", opts = {} } },
   lazy = false,
   keys = {
-    { "-", "<cmd>Oil --float --preview<cr>", mode = "n", desc = "Open parent directory" },
+    { "-", "<cmd>Oil<cr>", mode = "n", desc = "Open parent directory" },
   },
   opts = {
     columns = {

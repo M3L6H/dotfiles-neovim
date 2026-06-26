@@ -21,7 +21,11 @@ end
 
 local function close_all()
   -- Close all buffers
-  vim.cmd("bufdo! bwipeout!")
+  if lazyAdd(vim.g.plugins.snacks, nixCats("snacks")) then
+    Snacks.bufdelete.all({ force = true })
+  else
+    vim.cmd("bufdo! bdelete!")
+  end
 
   -- If we are not a neovim-remote server or not in tmux
   if not vim.v.servername:find("^/tmp/nvimsocket") or not switch_window() then
@@ -30,7 +34,7 @@ local function close_all()
   else
     -- Return to dashboard otherwise
     -- Open in current window. Weird things happen if we let Snacks make a new window
-    Snacks.dashboard({ win = vim.api.nvim_get_current_win() })
+    Snacks.dashboard()
   end
 end
 
@@ -59,6 +63,8 @@ km.set("v", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 if not lazyAdd(vim.g.feat["image-paste"], nixCats("image-paste")) then
   km.set("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 end
+
+km.set("n", "<leader>tw", "<CMD>set wrap!<CR>", { desc = "[t]oggle [w]rap" })
 
 km.set("v", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 km.set("n", "<leader>P", '"+P', { desc = "Paste from system clipboard" })

@@ -24,16 +24,16 @@ local M = {
     },
     overrides = function()
       return {
-        NormalFloat = { bg = "none" },
         FloatBorder = { bg = "none" },
         FloatTitle = { bg = "none" },
+        NormalFloat = { bg = "none" },
       }
     end,
   },
   init = function()
     vim.cmd("colorscheme kanagawa-wave")
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
   end,
 }
 
 return M
-

@@ -86,6 +86,9 @@ local M = {
   keys = {
     { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart find files" },
     { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command history" },
+    -- Scratch
+    { "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+    { "<leader>>", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
     -- Find
     { "<leader>fb", function() Snacks.picker.buffers() end, desc = "[f]ind [b]uffers" },
     { "<leader>fc", function() Snacks.picker.commands() end, desc = "[f]ind [c]ommands" },
@@ -99,6 +102,16 @@ local M = {
     { "<leader>fs", function() Snacks.picker.grep() end, desc = "[f]ind [s]earch (ripgrep)" },
     -- Code
     { "<leader>rf", function() Snacks.rename.rename_file() end, desc = "[r]ename [f]ile" },
+    -- Git
+    { "Gb", function() Snacks.git.blame_line() end, desc = "[G]it [b]lame" },
+    { "Gi", function() Snacks.picker.gh_issue() end, desc = "[G]it [i]ssues" },
+    { "GI", function() Snacks.picker.gh_issue({ state = "all" }) end, desc = "[G]it all [I]ssues" },
+    { "Gp", function() Snacks.picker.gh_pr() end, desc = "[G]it [p]ull requests" },
+    {
+      "GP",
+      function() Snacks.picker.gh_pr({ state = "all" }) end,
+      desc = "[G]it all [P]ull requests",
+    },
     -- Goto
     { "gd", function() Snacks.picker.lsp_definitions() end, desc = "[g]oto [d]efinition" },
     { "gD", function() Snacks.picker.lsp_declarations() end, desc = "[g]oto [D]eclaration" },
