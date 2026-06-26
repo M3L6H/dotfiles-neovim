@@ -339,6 +339,12 @@ local M = {
               settings = settings,
             })
             vim.lsp.enable(lsp)
+            vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = vim.g.border }) end)
+            vim.keymap.set(
+              "n",
+              "<C-k>",
+              function() vim.lsp.buf.signature_help({ border = vim.g.border }) end
+            )
           end,
           once = true,
           desc = "Enable lsp in BufReadPre",

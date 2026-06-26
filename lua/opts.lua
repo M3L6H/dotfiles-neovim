@@ -61,7 +61,7 @@ o.spell = true
 o.spelllang = "en_us"
 
 -- Border
-vim.g.border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
+vim.g.border = "rounded"
 
 -- Terminal window
 vim.g.terminalwindow = "2"
