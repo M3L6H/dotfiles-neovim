@@ -94,6 +94,7 @@
               nixfmt
             ];
             picker = with pkgs; [
+              fd
               fzf
               ripgrep
             ];

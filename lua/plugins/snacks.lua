@@ -86,6 +86,8 @@ local M = {
   keys = {
     { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart find files" },
     { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command history" },
+    { "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+    { "<leader>>", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
     -- Find
     { "<leader>fb", function() Snacks.picker.buffers() end, desc = "[f]ind [b]uffers" },
     { "<leader>fc", function() Snacks.picker.commands() end, desc = "[f]ind [c]ommands" },
