@@ -64,6 +64,8 @@ if not lazyAdd(vim.g.feat["image-paste"], nixCats("image-paste")) then
   km.set("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 end
 
+km.set("n", "<leader>tw", "<CMD>set wrap!<CR>", { desc = "[t]oggle [w]rap" })
+
 km.set("v", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 km.set("n", "<leader>P", '"+P', { desc = "Paste from system clipboard" })
 
