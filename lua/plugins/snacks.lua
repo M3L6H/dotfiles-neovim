@@ -103,12 +103,16 @@ local M = {
     -- Code
     { "<leader>rf", function() Snacks.rename.rename_file() end, desc = "[r]ename [f]ile" },
     -- Git
-    { "Gb", function() Snacks.git.blame_line() end, desc = "[G]it [b]lame" },
-    { "Gi", function() Snacks.picker.gh_issue() end, desc = "[G]it [i]ssues" },
-    { "GI", function() Snacks.picker.gh_issue({ state = "all" }) end, desc = "[G]it all [I]ssues" },
-    { "Gp", function() Snacks.picker.gh_pr() end, desc = "[G]it [p]ull requests" },
+    { "<leader>Gb", function() Snacks.git.blame_line() end, desc = "[G]it [b]lame" },
+    { "<leader>Gi", function() Snacks.picker.gh_issue() end, desc = "[G]it [i]ssues" },
     {
-      "GP",
+      "<leader>GI",
+      function() Snacks.picker.gh_issue({ state = "all" }) end,
+      desc = "[G]it all [I]ssues",
+    },
+    { "<leader>Gp", function() Snacks.picker.gh_pr() end, desc = "[G]it [p]ull requests" },
+    {
+      "<leader>GP",
       function() Snacks.picker.gh_pr({ state = "all" }) end,
       desc = "[G]it all [P]ull requests",
     },
