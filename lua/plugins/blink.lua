@@ -139,14 +139,14 @@ local M = {
       },
       ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-      ["<Up>"] = {
+      ["<A-k>"] = {
         function(cmp)
           vim.g.cmp_selected = true
           return cmp.select_prev()
         end,
         "fallback",
       },
-      ["<Down>"] = {
+      ["<A-j>"] = {
         function(cmp)
           vim.g.cmp_selected = true
           return cmp.select_next()
