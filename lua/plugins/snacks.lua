@@ -248,6 +248,8 @@ local M = {
               "trouble_open",
               mode = { "n", "i" },
             },
+            ["<A-j>"] = { "list_down", mode = { "i", "n" } },
+            ["<A-k>"] = { "list_up", mode = { "i", "n" } },
           },
         },
       },
