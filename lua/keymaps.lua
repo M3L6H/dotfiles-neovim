@@ -49,8 +49,8 @@ km.set("n", "<leader>q", function()
 end, { desc = "Save and quit all" })
 km.set("n", "<leader>Q", close_all, { desc = "Quit all w/o saving" })
 
-km.set("n", "<A-j>", "<CMD>m .+1<CR>==", { desc = "Move line down" })
-km.set("n", "<A-k>", "<CMD>m .-2<CR>==", { desc = "Move line up" })
+km.set("n", "<A-S-j>", "<CMD>m .+1<CR>==", { desc = "Move line down" })
+km.set("n", "<A-S-k>", "<CMD>m .-2<CR>==", { desc = "Move line up" })
 
 km.set("n", "J", "mzJ`z", { desc = "Join with next line" })
 
