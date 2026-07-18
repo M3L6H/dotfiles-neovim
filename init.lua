@@ -1,4 +1,4 @@
 require("opts")
-require("keymaps")
+require("binds")
 require("lazy-setup")
 require("autocmds")
