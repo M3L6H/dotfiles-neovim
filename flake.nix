@@ -102,6 +102,9 @@
               basedpyright
               ruff
             ];
+            qt = with pkgs; [
+              qt6.qtdeclarative
+            ];
             rust = with pkgs; [
               cargo
               rust-analyzer
@@ -301,6 +304,7 @@
               markdown = false;
               nix = false;
               python = false;
+              qt = false;
               rust = false;
               shell = false;
               toml = false;
@@ -379,6 +383,7 @@
               markdown = true;
               nix = true;
               python = true;
+              qt = true;
               rust = true;
               shell = true;
               toml = true;

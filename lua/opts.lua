@@ -82,6 +82,7 @@ vim.g.langs.markdown = true
 vim.g.langs.nix = false
 vim.g.langs.python = true
 vim.g.langs.rust = true
+vim.g.langs.qt = true
 vim.g.langs.shell = true
 vim.g.langs.toml = true
 vim.g.langs.web = true
