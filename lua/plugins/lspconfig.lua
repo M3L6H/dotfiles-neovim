@@ -199,6 +199,10 @@ local lsps = {
       },
     },
   },
+  qmlls = lazyAdd(vim.g.langs.qt, nixCats("qt")) and {
+    pattern = { "*.qml", "*.qmljs" },
+    settings = {},
+  },
   rust_analyzer = lazyAdd(vim.g.langs.rust, nixCats("rust")) and {
     pattern = { "*.rs" },
     settings = {
