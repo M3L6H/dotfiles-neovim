@@ -108,7 +108,7 @@ vim.g.plugins["mini-surround"] = false
 vim.g.plugins.minty = true
 vim.g.plugins.multicursor = true
 vim.g.plugins.noice = false
-vim.g.plugins.oil = true
+vim.g.plugins.oil = false
 vim.g.plugins["render-markdown"] = true
 vim.g.plugins.screensaver = true
 vim.g.plugins.smartcolumn = true
@@ -124,7 +124,7 @@ vim.g.plugins["which-key"] = true
 
 -- Feature enablement opts
 vim.g.feat = {}
-vim.g.feat.ai = true
+vim.g.feat.ai = false
 vim.g.feat.dictionary = true
 vim.g.feat.image = true
 vim.g.feat["image-paste"] = true
