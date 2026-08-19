@@ -369,7 +369,7 @@
               general = true;
 
               # Functionality
-              ai = true;
+              ai = false;
               dashboard = true;
               image = true;
               image-paste = true;
@@ -409,7 +409,7 @@
               minty = true;
               multicursor = true;
               noice = false;
-              oil = true;
+              oil = false;
               render-markdown = true;
               screensaver = true;
               smartcolumn = true;
