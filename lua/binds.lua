@@ -20,20 +20,12 @@ local function switch_window()
 end
 
 local function close_all()
-  -- Close all buffers
-  if lazyAdd(vim.g.plugins.snacks, nixCats("snacks")) then
-    Snacks.bufdelete.all({ force = true })
-  else
-    vim.cmd("bufdo! bdelete!")
-  end
-
   -- If we are not a neovim-remote server or not in tmux
   if not vim.v.servername:find("^/tmp/nvimsocket") or not switch_window() then
     -- Quit vim
     vim.cmd("q")
   else
     -- Return to dashboard otherwise
-    -- Open in current window. Weird things happen if we let Snacks make a new window
     Snacks.dashboard()
   end
 end
