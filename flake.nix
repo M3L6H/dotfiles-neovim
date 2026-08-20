@@ -408,8 +408,8 @@
               mini-surround = false;
               minty = true;
               multicursor = true;
-              noice = false;
-              oil = false;
+              noice = true;
+              oil = true;
               render-markdown = true;
               screensaver = true;
               smartcolumn = true;

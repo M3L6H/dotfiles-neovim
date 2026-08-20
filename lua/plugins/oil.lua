@@ -13,9 +13,12 @@ local M = {
       "icon",
     },
     skip_confirm_for_simple_edits = true,
+    prompt_save_on_select_new_entry = true,
     lsp_file_methods = {
       autosave_changes = true,
     },
+    constrain_cursor = "name",
+    watch_for_changes = true,
     keymaps = {
       ["<C-h>"] = false, -- We use this keymap in vim-tmux-navigator
       ["<C-l>"] = false, -- We use this keymap in vim-tmux-navigator

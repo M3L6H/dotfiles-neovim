@@ -78,13 +78,6 @@ local recents = heights[1]
 local git = heights[2]
 local gh = heights[3]
 
-local explorer = {
-  auto_close = true,
-  ignored = false,
-  replace_netrw = false, -- We replace netrw ourselves so we can set custom settings
-  trash = false,
-}
-
 local M = {
   "folke/snacks.nvim",
   enabled = lazyAdd(vim.g.plugins.snacks, nixCats("snacks")),
@@ -151,12 +144,6 @@ local M = {
       desc = "Jump to previous reference",
       mode = { "n", "t" },
     },
-    {
-      "-",
-      function() Snacks.explorer({ auto_close = true }) end,
-      desc = "Open explorer",
-      mode = { "n" },
-    },
   },
   opts = {
     bigfile = { enabled = true },
@@ -217,7 +204,6 @@ local M = {
         },
       },
     },
-    explorer = explorer,
     image = { enabled = lazyAdd(vim.g.feat.image, nixCats("image")) },
     indent = {
       enabled = true,
@@ -312,46 +298,6 @@ local M = {
         end
       end,
       desc = "Neovim News",
-    })
-
-    -- Explorer autocommand (replace netrw)
-    -- Copied from https://github.com/folke/snacks.nvim/blob/main/lua/snacks/explorer/init.lua#L27
-    -- Disable netrw
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
-
-    local group = vim.api.nvim_create_augroup("snacks.explorer", { clear = true })
-
-    local function handle(ev)
-      if ev.file ~= "" and vim.fn.isdirectory(ev.file) == 1 then
-        explorer.cwd = ev.file
-        local picker = Snacks.explorer.open(explorer)
-        if picker and vim.v.vim_did_enter == 0 then
-          -- clear bufname so we don't try loading this one again
-          vim.api.nvim_buf_set_name(ev.buf, "")
-          picker:show()
-          local ref = picker:ref()
-          -- focus on UIEnter, since focusing before doesn't work
-          vim.api.nvim_create_autocmd("UIEnter", {
-            once = true,
-            group = group,
-            callback = function()
-              local p = ref()
-              if p then p:focus() end
-            end,
-          })
-        else
-          -- after vim has entered, we also need to delete the directory buffer
-          -- use bufdelete to keep the window layout
-          Snacks.bufdelete.delete(ev.buf)
-        end
-      end
-    end
-
-    -- Open the explorer when opening a directory
-    vim.api.nvim_create_autocmd("BufEnter", {
-      group = group,
-      callback = handle,
     })
   end,
 }
