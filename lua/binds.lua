@@ -70,6 +70,28 @@ km.set("n", "<A-P>", '"+P', { desc = "Paste without overwriting register" })
 km.set("n", "<A-d>", '"_d', { desc = "Delete into void register" })
 km.set("v", "<A-d>", '"_d', { desc = "Delete into void register" })
 
+km.set("v", "<leader>bd", function()
+  vim.cmd('normal! "zy')
+  local selected = vim.fn.getreg("z")
+
+  local ok, decoded = pcall(vim.base64.decode, vim.trim(selected))
+  if ok then
+    vim.fn.setreg("z", decoded)
+    vim.cmd('normal! gv"zp')
+  else
+    vim.notify("Invalid Base64 string", vim.log.levels.ERROR)
+  end
+end, { desc = "[B]ase64 [D]ecode" })
+
+km.set("v", "<leader>be", function()
+  vim.cmd('normal! "zy')
+  local selected = vim.fn.getreg("z")
+
+  local encoded = vim.base64.encode(selected)
+  vim.fn.setreg("z", decoded)
+  vim.cmd('normal! gv"zp')
+end, { desc = "[B]ase64 [E]ncode" })
+
 -- we don't like Q
 km.set("n", "Q", "<nop>")
 
