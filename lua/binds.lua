@@ -88,7 +88,7 @@ km.set("v", "<leader>be", function()
   local selected = vim.fn.getreg("z")
 
   local encoded = vim.base64.encode(selected)
-  vim.fn.setreg("z", decoded)
+  vim.fn.setreg("z", encoded)
   vim.cmd('normal! gv"zp')
 end, { desc = "[B]ase64 [E]ncode" })
 
